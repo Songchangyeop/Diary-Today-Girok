@@ -1,8 +1,9 @@
-@value makerGreen from '../../common/size.css';
+@value makerGreen, makerLightGrey from '../../common/colors.css';
 
 .editor {
   flex-basis: 50%;
-  background-color: violet;
+  border-right: 1px solid makerLightGrey;
+  padding: 0.5em 2em;
 }
 
 .title {
