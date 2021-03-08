@@ -16,8 +16,6 @@ const Card = ({ card }) => {
 
   const url = fileURL || DEFAULT_IMAGE;
 
-  console.log(card);
-
   return (
     <li className={`${styles.card} ${getStyles(theme)}`}>
       <img className={styles.avatar} src={url} alt="profile img" />

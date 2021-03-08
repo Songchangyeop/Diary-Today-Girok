@@ -8,6 +8,9 @@
   position: relative;
 }
 
+.header.onMaker {
+}
+
 .logo {
   width: 3em;
 }
