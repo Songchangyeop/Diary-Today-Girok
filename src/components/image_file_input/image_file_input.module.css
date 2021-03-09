@@ -1,9 +1,11 @@
-@value makerLightGrey from '../../common/colors.css';
+@value makerLightGrey, makerPink, makerLightPink from '../../common/colors.css';
 
 .container {
   width: 100%;
   height: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .input {
@@ -12,7 +14,7 @@
 
 .button {
   width: 100%;
-  background-color: makerLightGrey;
+  height: 100%;
   font-weight: bold;
   cursor: pointer;
   border: 0;
@@ -20,6 +22,33 @@
   font-size: 0.8rem;
 }
 
+.button.grey {
+  background-color: makerLightGrey;
+}
+
+.button.pink {
+  background-color: makerLightPink;
+}
+
 .button:hover {
   opacity: 0.8;
+}
+
+.loading {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  border: 3px solid makerLightGrey;
+  border-top: 3px solid makerPink;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
