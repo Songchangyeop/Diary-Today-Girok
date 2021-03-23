@@ -20,6 +20,14 @@
   height: 3em;
   background-color: #ffb74d;
   border: 0;
+  cursor: pointer;
   border-radius: 50%;
   outline: none;
+}
+
+.bar {
+  width: 100%;
+  height: 1px;
+  background-color: black;
+  margin: 1em 0;
 }

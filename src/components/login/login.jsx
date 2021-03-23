@@ -16,7 +16,7 @@ const Login = ({ authService }) => {
 
   const onLogin = (event) => {
     authService
-      .login(event.currentTarget.textContent) //
+      .login(event.target.value) //
       .then((data) => goToMaker(data.user.uid));
   };
 
@@ -30,16 +30,26 @@ const Login = ({ authService }) => {
     <section className={styles.login}>
       <Header authService={authService} />
       <section>
-        <h1>LogOut</h1>
+        <h1>로그인</h1>
         <ul className={styles.list}>
           <li className={styles.item}>
-            <button className={styles.button} onClick={onLogin}>
-              Google
+            <button className={styles.button} onClick={onLogin} value="Google">
+              <img
+                className={styles.logo}
+                src="images/google.png"
+                alt="google"
+              />
+              Google을(를) 사용하여 로그인
             </button>
           </li>
           <li className={styles.item}>
-            <button className={styles.button} onClick={onLogin}>
-              Github
+            <button className={styles.button} onClick={onLogin} value="Github">
+              <img
+                className={styles.logo}
+                src="images/github.png"
+                alt="github"
+              />
+              Github을(를) 사용하여 로그인
             </button>
           </li>
         </ul>

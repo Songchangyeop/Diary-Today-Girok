@@ -27,7 +27,9 @@ const Editor = ({
           닫기
         </button>
       )}
-      <h1 className={styles.title}>Card Maker</h1>
+      <h1 className={styles.title}>Diary Maker</h1>
+      <CardAddForm FileInput={FileInput} onAdd={addCard} />
+      <div className={styles.bar}></div>
       {Object.keys(cards).map((key) => (
         <CardEditForm
           key={key}
@@ -37,7 +39,6 @@ const Editor = ({
           deleteCard={deleteCard}
         />
       ))}
-      <CardAddForm FileInput={FileInput} onAdd={addCard} />
     </section>
   );
 };

@@ -11,7 +11,7 @@ const Preview = ({ cards, editorOpen, editOpen }) => {
   return (
     <section className={styles.preview}>
       <ul className={styles.cards}>
-        <h1 className={styles.title}>Card Preview</h1>
+        <h1 className={styles.title}>Diary Preview</h1>
         {Object.keys(cards).map((key) => (
           <Card key={key} card={cards[key]} />
         ))}
