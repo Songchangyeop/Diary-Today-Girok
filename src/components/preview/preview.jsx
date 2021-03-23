@@ -2,14 +2,29 @@ import React from 'react';
 import Card from '../card/card';
 import styles from './preview.module.css';
 
-const Preview = ({ cards }) => {
+const Preview = ({ cards, editorOpen, editOpen }) => {
+  const btnClick = (e) => {
+    console.log(e.target.value);
+    editorOpen(e.target.value);
+  };
+
   return (
     <section className={styles.preview}>
-      <h1 className={styles.title}>Card Preview</h1>
       <ul className={styles.cards}>
+        <h1 className={styles.title}>Card Preview</h1>
         {Object.keys(cards).map((key) => (
           <Card key={key} card={cards[key]} />
         ))}
+        {!editOpen && (
+          <button
+            className={styles.open}
+            type="button"
+            onClick={btnClick}
+            value="write"
+          >
+            쓰기
+          </button>
+        )}
       </ul>
     </section>
   );

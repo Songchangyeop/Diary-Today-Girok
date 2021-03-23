@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from './maker.module.css';
 import Header from '../header/header';
 import Footer from '../footer/footer';
@@ -10,11 +10,12 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
   const historyState = useHistory().state;
   const [cards, setCards] = useState({});
   const [userId, setUserId] = useState(historyState && historyState.id);
+  const [editOpen, setEditOpen] = useState(false);
 
   const history = useHistory();
-  const onLogout = () => {
+  const onLogout = useCallback(() => {
     authService.logout();
-  };
+  }, [authService]);
 
   useEffect(() => {
     if (!userId) {
@@ -56,18 +57,30 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
     cardRepository.removeCard(userId, card);
   };
 
+  const editorOpen = (value) => {
+    if (value === 'write') {
+      setEditOpen(true);
+    } else {
+      setEditOpen(false);
+    }
+  };
+
   return (
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
-        <Editor
-          FileInput={FileInput}
-          cards={cards}
-          addCard={createOrupdateCard}
-          updateCard={createOrupdateCard}
-          deleteCard={deleteCard}
-        />
-        <Preview cards={cards} />
+        {editOpen && (
+          <Editor
+            FileInput={FileInput}
+            cards={cards}
+            addCard={createOrupdateCard}
+            updateCard={createOrupdateCard}
+            deleteCard={deleteCard}
+            editorOpen={editorOpen}
+            editOpen={editOpen}
+          />
+        )}
+        <Preview cards={cards} editorOpen={editorOpen} editOpen={editOpen} />
       </div>
       <Footer />
     </section>
