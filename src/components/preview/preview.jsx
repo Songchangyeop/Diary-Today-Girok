@@ -4,7 +4,6 @@ import styles from './preview.module.css';
 
 const Preview = ({ cards, editorOpen, editOpen }) => {
   const btnClick = (e) => {
-    console.log(e.target.value);
     editorOpen(e.target.value);
   };
 
@@ -22,7 +21,7 @@ const Preview = ({ cards, editorOpen, editOpen }) => {
             onClick={btnClick}
             value="write"
           >
-            쓰기
+            편집
           </button>
         )}
       </ul>

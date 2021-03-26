@@ -69,6 +69,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
+        <Preview cards={cards} editorOpen={editorOpen} editOpen={editOpen} />
         {editOpen && (
           <Editor
             FileInput={FileInput}
@@ -80,7 +81,6 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
             editOpen={editOpen}
           />
         )}
-        <Preview cards={cards} editorOpen={editorOpen} editOpen={editOpen} />
       </div>
       <Footer />
     </section>

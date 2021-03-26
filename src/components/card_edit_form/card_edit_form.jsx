@@ -3,14 +3,11 @@ import Button from '../button/button';
 import styles from './card_edit_form.module.css';
 
 const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
-  const nameRef = useRef();
-  const companyRef = useRef();
   const themeRef = useRef();
-  const titleRef = useRef();
-  const emailRef = useRef();
+  const dateRef = useRef();
   const messageRef = useRef();
 
-  const { id, name, company, title, email, message, theme, fileName } = card;
+  const { id, date, message, theme, fileName } = card;
 
   const onFileChange = (file) => {
     updateCard({
@@ -36,7 +33,24 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
 
   return (
     <form className={styles.form}>
-      <input
+      <div className={styles.date}>
+        <h1>오늘은</h1>
+        <select
+          ref={dateRef}
+          className={styles.dateSelect}
+          name="date"
+          placeholder="date"
+          value={date}
+          onChange={onChange}
+        >
+          <option placeholder="light">1</option>
+          <option placeholder="dark">2</option>
+          <option placeholder="colorful">3</option>
+        </select>
+        <h1>일</h1>
+      </div>
+      <h1 className={styles.feel}>오늘의 기분은</h1>
+      {/* <input
         ref={nameRef}
         className={styles.input}
         type="text"
@@ -51,7 +65,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         name="company"
         value={company}
         onChange={onChange}
-      />
+      /> */}
       <select
         ref={themeRef}
         className={styles.select}
@@ -59,30 +73,30 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         value={theme}
         onChange={onChange}
       >
-        <option placeholder="light">light</option>
-        <option placeholder="dark">dark</option>
-        <option placeholder="colorful">colorful</option>
+        <option placeholder="light">그저그래요</option>
+        <option placeholder="dark">나빠요</option>
+        <option placeholder="colorful">우울해요</option>
       </select>
-      <input
+      {/* <input
         ref={titleRef}
         className={styles.input}
         type="text"
         name="title"
         value={title}
         onChange={onChange}
-      />
-      <input
+      /> */}
+      {/* <input
         ref={emailRef}
         className={styles.input}
         type="text"
         name="email"
         value={email}
         onChange={onChange}
-      />
+      /> */}
       <textarea
         ref={messageRef}
         className={styles.textarea}
-        name="message"
+        placeholder="오늘을 기록하세요..."
         value={message}
         onChange={onChange}
       />

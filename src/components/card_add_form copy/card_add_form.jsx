@@ -4,11 +4,8 @@ import styles from './card_add_form.module.css';
 
 const CardAddForm = memo(({ FileInput, onAdd }) => {
   const formRef = useRef();
-  const nameRef = useRef();
-  const companyRef = useRef();
   const themeRef = useRef();
-  const titleRef = useRef();
-  const emailRef = useRef();
+  const dateRef = useRef();
   const messageRef = useRef();
   const [file, setFile] = useState({
     fileName: null,
@@ -26,11 +23,8 @@ const CardAddForm = memo(({ FileInput, onAdd }) => {
     event.preventDefault();
     const card = {
       id: Date.now(), //uuid
-      name: nameRef.current.value || '',
-      company: companyRef.current.value || '',
       theme: themeRef.current.value,
-      title: titleRef.current.value || '',
-      email: emailRef.current.value || '',
+      date: themeRef.current.value,
       message: messageRef.current.value || '',
       fileName: file.fileName || '',
       fileURL: file.fileURL || '',
@@ -45,20 +39,35 @@ const CardAddForm = memo(({ FileInput, onAdd }) => {
 
   return (
     <form ref={formRef} className={styles.form}>
-      <input
+      <div className={styles.date}>
+        <h1>오늘은</h1>
+        <select
+          ref={dateRef}
+          className={styles.dateSelect}
+          name="date"
+          placeholder="date"
+        >
+          <option placeholder="light">1</option>
+          <option placeholder="dark">2</option>
+          <option placeholder="colorful">3</option>
+        </select>
+        <h1>일</h1>
+      </div>
+      <h1 className={styles.feel}>오늘의 기분은</h1>
+      {/* <input
         ref={nameRef}
         className={styles.input}
         type="text"
         name="name"
         placeholder="Name"
-      />
-      <input
+      /> */}
+      {/* <input
         ref={companyRef}
         className={styles.input}
         type="text"
         name="company"
         placeholder="Company"
-      />
+      /> */}
 
       <select
         ref={themeRef}
@@ -66,11 +75,11 @@ const CardAddForm = memo(({ FileInput, onAdd }) => {
         name="theme"
         placeholder="Theme"
       >
-        <option placeholder="light">light</option>
-        <option placeholder="dark">dark</option>
-        <option placeholder="colorful">colorful</option>
+        <option placeholder="light">그저그래요</option>
+        <option placeholder="dark">나빠요</option>
+        <option placeholder="colorful">우울해요</option>
       </select>
-      <input
+      {/* <input
         ref={titleRef}
         className={styles.input}
         type="text"
@@ -83,12 +92,12 @@ const CardAddForm = memo(({ FileInput, onAdd }) => {
         type="text"
         name="email"
         placeholder="Email"
-      />
+      /> */}
       <textarea
         ref={messageRef}
         className={styles.textarea}
         name="message"
-        placeholder="Message"
+        placeholder="오늘을 기록하세요..."
       />
       <div className={styles.fileInput}>
         <FileInput name={file.fileName} onFileChange={onFileChange} />

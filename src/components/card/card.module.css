@@ -1,15 +1,26 @@
-@value makerShadow, makerBlack, makerWhite, makerWheat from '../../common/colors.css';
+@value makerShadow, makerBlack, makerWhite, makerLightGrey from '../../common/colors.css';
 
 .card {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 100%;
-  border-radius: 1em;
+  width: 10rem;
+  height: 12rem;
+  max-width: 30rem;
   margin-bottom: 0.5em;
   padding: 0.2em 0;
-  background-color: yellow;
+  border-top: 1px solid makerLightGrey;
+  border-left: 1px solid makerLightGrey;
+  border-radius: 1em;
+  background-color: makerWhite;
   box-shadow: 6px 6px 8px 0px makerShadow;
-  max-width: 30rem;
+  transition: transform 300ms ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 10px 10px 12px 0px makerShadow;
 }
 
 .card.dark {
@@ -39,29 +50,9 @@
 .info {
   width: 100%;
 }
-.name,
-.company,
-.title,
-.email,
+
 .message {
   margin: 0;
   font-size: 0.8rem;
   margin-bottom: 0.2em;
-}
-
-.name {
-  font-size: 1.2rem;
-}
-
-.company {
-  margin-bottom: 1em;
-}
-
-.company::after {
-  content: '';
-  display: block;
-  width: 90%;
-  height: 2px;
-  background-color: makerWheat;
-  transform: translateY(0.5em);
 }

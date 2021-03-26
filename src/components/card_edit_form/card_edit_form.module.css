@@ -4,11 +4,13 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  border-top: 1px solid makerBlack;
-  border-left: 1px solid makerBlack;
+  border: 1px solid #9e9e9e;
+  border-radius: 1em;
+  padding: 1em;
+  /* border: 1px solid makerBlack; */
+  /* border-left: 1px solid makerBlack; */
   margin-bottom: 1em;
 }
-
 .input,
 .textarea,
 .select,
@@ -18,14 +20,31 @@
   width: 100%;
   border: 0;
   padding: 0.5em;
-  border-bottom: 1px solid makerBlack;
-  border-right: 1px solid makerBlack;
+  /* border-bottom: 1px solid makerBlack;
+  border-right: 1px solid makerBlack; */
   background: makerWhite;
 }
+.date {
+  display: flex;
+  width: 100%;
+}
 
-.input,
+.dateSelect {
+  color: makerBlack;
+  font-size: 1.3em;
+  border: 0;
+  margin: 0 0.4em;
+}
+
+.feel {
+  flex: 1 1 60%;
+  text-align: end;
+}
+
 .select {
-  flex: 1 1 30%;
+  flex: 1 1 40%;
+  font: 1.3em;
+  color: makerBlack;
 }
 
 .fileInput {
@@ -42,4 +61,6 @@
 
 .textarea {
   flex-basis: 100%;
+  border: 1px solid makerBlack;
+  margin-bottom: 1em;
 }
