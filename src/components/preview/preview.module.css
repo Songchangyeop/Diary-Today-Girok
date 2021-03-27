@@ -6,8 +6,6 @@
 }
 
 .title {
-  flex: 1 1 100%;
-
   text-align: center;
   margin-bottom: 1em;
 }
@@ -23,7 +21,7 @@
 }
 
 .open {
-  position: absolute;
+  position: fixed;
   width: 4em;
   height: 4em;
   border-radius: 50%;
@@ -31,14 +29,14 @@
   outline: none;
   cursor: pointer;
   background-color: #ffb74d;
-  right: 1.5em;
-  bottom: 1em;
+  right: 2em;
+  bottom: 5em;
   transition: all 300ms ease;
 }
 
 .open:hover {
   width: 4.5em;
   height: 4.5em;
-  right: 1.2em;
-  bottom: 0.7em;
+  right: 2em;
+  bottom: 5em;
 }

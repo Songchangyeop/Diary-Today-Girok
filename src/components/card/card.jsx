@@ -10,9 +10,10 @@ const Card = memo(({ card }) => {
   return (
     // <li className={`${styles.card} ${getStyles(theme)}`}>
     <li className={styles.card}>
+      <h3 className={styles.date}>{date} th</h3>
       <img className={styles.avatar} src={url} alt="profile" />
       <div className={styles.info}>
-        <p className={styles.message}>{message}</p>
+        {/* <p className={styles.message}>{message}</p> */}
       </div>
     </li>
   );

@@ -9,13 +9,15 @@
   height: 12rem;
   max-width: 30rem;
   margin-bottom: 0.5em;
+  margin-right: 1em;
   padding: 0.2em 0;
   border-top: 1px solid makerLightGrey;
   border-left: 1px solid makerLightGrey;
   border-radius: 1em;
   background-color: makerWhite;
   box-shadow: 6px 6px 8px 0px makerShadow;
-  transition: transform 300ms ease;
+  transition: transform 150ms ease;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -55,4 +57,8 @@
   margin: 0;
   font-size: 0.8rem;
   margin-bottom: 0.2em;
+}
+
+.date {
+  margin: 0;
 }
