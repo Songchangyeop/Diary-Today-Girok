@@ -3,13 +3,11 @@ import Card from '../card/card';
 
 import styles from './preview.module.css';
 
-const Preview = ({ cards, editorOpen, editOpen }) => {
+const Preview = ({ cards, editorOpen, editOpen, month }) => {
   const btnClick = (e) => {
     editorOpen(e.target.value);
   };
-
   console.log(cards);
-
   return (
     <section className={styles.preview}>
       <h1 className={styles.title}>Diary Preview</h1>

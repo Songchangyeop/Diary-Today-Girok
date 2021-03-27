@@ -11,6 +11,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
   const [cards, setCards] = useState({});
   const [userId, setUserId] = useState(historyState && historyState.id);
   const [editOpen, setEditOpen] = useState(false);
+  const [month, setMonth] = useState('01');
 
   const history = useHistory();
   const onLogout = useCallback(() => {
@@ -21,13 +22,18 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
     if (!userId) {
       return;
     }
-    const stopSync = cardRepository.syncCards(userId, (cards) => {
-      //syncCards 함수 호출 후 ref.off 리턴받아 stopSync에 할당
-      setCards(cards);
-    });
+    console.log(month);
+    const stopSync = cardRepository.syncCards(
+      userId,
+      (cards) => {
+        //syncCards 함수 호출 후 ref.off 리턴받아 stopSync에 할당
+        setCards(cards);
+      },
+      month
+    );
     //useEffct에서 return은 언마운트 될 시에 실행
     return () => stopSync(); // 불필요한 네트워크 사용을 최소화 하기위해  ref.off
-  }, [userId, cardRepository]);
+  }, [userId, cardRepository, month]);
 
   useEffect(() => {
     authService.onAuthChange((user) => {
@@ -45,7 +51,8 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
       updated[card.id] = card;
       return updated;
     });
-    cardRepository.saveCard(userId, card);
+    cardRepository.saveCard(userId, card, month);
+    console.log(month);
   };
 
   const deleteCard = (card) => {
@@ -54,7 +61,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
       delete updated[card.id];
       return updated;
     });
-    cardRepository.removeCard(userId, card);
+    cardRepository.removeCard(userId, card, month);
   };
 
   const editorOpen = (value) => {
@@ -65,11 +72,21 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
     }
   };
 
+  const updateMonth = (newMonth) => {
+    // console.log(newMonth);
+    setMonth(newMonth);
+  };
+
   return (
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
-        <Preview cards={cards} editorOpen={editorOpen} editOpen={editOpen} />
+        <Preview
+          cards={cards}
+          editorOpen={editorOpen}
+          editOpen={editOpen}
+          month={month}
+        />
         {editOpen && (
           <Editor
             FileInput={FileInput}
@@ -79,6 +96,8 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
             deleteCard={deleteCard}
             editorOpen={editorOpen}
             editOpen={editOpen}
+            updateMonth={updateMonth}
+            month={month}
           />
         )}
       </div>

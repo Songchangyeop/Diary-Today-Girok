@@ -12,6 +12,8 @@ const Editor = ({
   deleteCard,
   editorOpen,
   editOpen,
+  updateMonth,
+  month,
 }) => {
   const btnClick = (e) => {
     editorOpen(e.target.value);
@@ -28,9 +30,9 @@ const Editor = ({
           닫기
         </button>
       )}
-      <Month></Month>
+      <Month updateMonth={updateMonth}></Month>
       <h1 className={styles.title}>Diary Maker</h1>
-      <CardAddForm FileInput={FileInput} onAdd={addCard} />
+      <CardAddForm FileInput={FileInput} onAdd={addCard} month={month} />
       <div className={styles.bar}></div>
       {Object.keys(cards).map((key) => (
         <CardEditForm

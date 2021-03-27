@@ -3,7 +3,7 @@ import styles from './card.module.css';
 
 const DEFAULT_IMAGE = 'images/default_logo.png';
 const Card = memo(({ card }) => {
-  const { date, message, theme, fileURL } = card;
+  const { date, message, fileURL } = card;
 
   const url = fileURL || DEFAULT_IMAGE;
 

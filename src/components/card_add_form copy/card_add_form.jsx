@@ -2,7 +2,7 @@ import React, { memo, useRef, useState } from 'react';
 import Button from '../button/button';
 import styles from './card_add_form.module.css';
 
-const CardAddForm = memo(({ FileInput, onAdd }) => {
+const CardAddForm = memo(({ FileInput, onAdd, month }) => {
   const formRef = useRef();
   const themeRef = useRef();
   const dateRef = useRef();
@@ -28,6 +28,7 @@ const CardAddForm = memo(({ FileInput, onAdd }) => {
       message: messageRef.current.value || '',
       fileName: file.fileName || '',
       fileURL: file.fileURL || '',
+      month: month,
     };
     formRef.current.reset();
     setFile({
