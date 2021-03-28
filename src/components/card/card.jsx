@@ -2,14 +2,19 @@ import React, { memo } from 'react';
 import styles from './card.module.css';
 
 const DEFAULT_IMAGE = 'images/default_logo.png';
-const Card = memo(({ card }) => {
+const Card = memo(({ card, readDiary, openDiary }) => {
   const { date, message, fileURL } = card;
 
   const url = fileURL || DEFAULT_IMAGE;
 
+  const selectCard = () => {
+    readDiary(card);
+    openDiary();
+  };
+
   return (
     // <li className={`${styles.card} ${getStyles(theme)}`}>
-    <li className={styles.card}>
+    <li className={styles.card} onClick={selectCard}>
       <h3 className={styles.date}>{date} th</h3>
       <img className={styles.avatar} src={url} alt="profile" />
       <div className={styles.info}>

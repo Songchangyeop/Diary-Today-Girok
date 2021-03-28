@@ -5,6 +5,7 @@ import Footer from '../footer/footer';
 import { useHistory } from 'react-router-dom';
 import Editor from '../editor/editor';
 import Preview from '../preview/preview';
+import Diary from '../diary/diary';
 
 const Maker = ({ FileInput, authService, cardRepository }) => {
   const historyState = useHistory().state;
@@ -12,6 +13,8 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
   const [userId, setUserId] = useState(historyState && historyState.id);
   const [editOpen, setEditOpen] = useState(false);
   const [month, setMonth] = useState('01');
+  const [readCard, setReadCard] = useState();
+  const [diaryOpen, setDiaryOpen] = useState(false);
 
   const history = useHistory();
   const onLogout = useCallback(() => {
@@ -75,15 +78,28 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
     setMonth(newMonth);
   };
 
+  const readDiary = (selectCard) => {
+    setReadCard(selectCard);
+  };
+
+  const openDiary = (value) => {
+    setDiaryOpen(true);
+  };
+
   return (
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
+        <div className={styles.dairyContainer}>
+          {diaryOpen && <Diary readCard={readCard}></Diary>}
+        </div>
         <Preview
           cards={cards}
           editorOpen={editorOpen}
           editOpen={editOpen}
           updateMonth={updateMonth}
+          readDiary={readDiary}
+          openDiary={openDiary}
         />
         {editOpen && (
           <Editor

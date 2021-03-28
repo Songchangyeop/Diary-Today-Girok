@@ -4,7 +4,14 @@ import Month from '../month/month';
 
 import styles from './preview.module.css';
 
-const Preview = ({ cards, editorOpen, editOpen, updateMonth }) => {
+const Preview = ({
+  cards,
+  editorOpen,
+  editOpen,
+  updateMonth,
+  readDiary,
+  openDiary,
+}) => {
   const btnClick = (e) => {
     editorOpen(e.target.value);
   };
@@ -16,7 +23,12 @@ const Preview = ({ cards, editorOpen, editOpen, updateMonth }) => {
       </div>
       <ul className={styles.cards}>
         {Object.keys(cards).map((key) => (
-          <Card key={key} card={cards[key]} />
+          <Card
+            key={key}
+            card={cards[key]}
+            readDiary={readDiary}
+            openDiary={openDiary}
+          />
         ))}
         {!editOpen && (
           <button
