@@ -1,7 +1,6 @@
 import React from 'react';
 import CardAddForm from '../card_add_form copy/card_add_form';
 import CardEditForm from '../card_edit_form/card_edit_form';
-import Month from '../month/month';
 import styles from './editor.module.css';
 
 const Editor = ({
@@ -12,12 +11,12 @@ const Editor = ({
   deleteCard,
   editorOpen,
   editOpen,
-  updateMonth,
   month,
 }) => {
   const btnClick = (e) => {
     editorOpen(e.target.value);
   };
+  console.log(cards);
   return (
     <section className={styles.editor}>
       {editOpen && (
@@ -30,7 +29,7 @@ const Editor = ({
           닫기
         </button>
       )}
-      <Month updateMonth={updateMonth}></Month>
+
       <h1 className={styles.title}>Diary Maker</h1>
       <CardAddForm FileInput={FileInput} onAdd={addCard} month={month} />
       <div className={styles.bar}></div>

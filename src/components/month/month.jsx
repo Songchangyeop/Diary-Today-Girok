@@ -7,7 +7,7 @@ const Month = ({ updateMonth }) => {
     updateMonth(monthRef.current.value);
   };
   return (
-    <form>
+    <form className={styles.form}>
       <select
         ref={monthRef}
         className={styles.monthSelect}
@@ -28,6 +28,7 @@ const Month = ({ updateMonth }) => {
         <option placeholder="11">11</option>
         <option placeholder="12">12</option>
       </select>
+      <span className={styles.text}>월</span>
     </form>
   );
 };

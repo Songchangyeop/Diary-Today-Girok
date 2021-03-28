@@ -1,16 +1,19 @@
 import React from 'react';
 import Card from '../card/card';
+import Month from '../month/month';
 
 import styles from './preview.module.css';
 
-const Preview = ({ cards, editorOpen, editOpen, month }) => {
+const Preview = ({ cards, editorOpen, editOpen, updateMonth }) => {
   const btnClick = (e) => {
     editorOpen(e.target.value);
   };
-  console.log(cards);
   return (
     <section className={styles.preview}>
-      <h1 className={styles.title}>Diary Preview</h1>
+      <div className={styles.container}>
+        <h1 className={styles.title}>Diary Preview</h1>
+        <Month updateMonth={updateMonth}></Month>
+      </div>
       <ul className={styles.cards}>
         {Object.keys(cards).map((key) => (
           <Card key={key} card={cards[key]} />

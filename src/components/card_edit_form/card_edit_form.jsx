@@ -21,12 +21,14 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
     if (event.currentTarget == null) {
       return;
     }
+    console.log(event.currentTarget.value);
     event.preventDefault();
     updateCard({
       ...card,
       [event.currentTarget.name]: event.currentTarget.value,
     });
   };
+
   const onSubmit = () => {
     deleteCard(card);
   };
@@ -50,22 +52,6 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         <h1>일</h1>
       </div>
       <h1 className={styles.feel}>오늘의 기분은</h1>
-      {/* <input
-        ref={nameRef}
-        className={styles.input}
-        type="text"
-        name="name"
-        value={name}
-        onChange={onChange}
-      />
-      <input
-        ref={companyRef}
-        className={styles.input}
-        type="text"
-        name="company"
-        value={company}
-        onChange={onChange}
-      /> */}
       <select
         ref={themeRef}
         className={styles.select}
@@ -77,26 +63,10 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         <option placeholder="dark">나빠요</option>
         <option placeholder="colorful">우울해요</option>
       </select>
-      {/* <input
-        ref={titleRef}
-        className={styles.input}
-        type="text"
-        name="title"
-        value={title}
-        onChange={onChange}
-      /> */}
-      {/* <input
-        ref={emailRef}
-        className={styles.input}
-        type="text"
-        name="email"
-        value={email}
-        onChange={onChange}
-      /> */}
       <textarea
         ref={messageRef}
         className={styles.textarea}
-        placeholder="오늘을 기록하세요..."
+        name="message"
         value={message}
         onChange={onChange}
       />

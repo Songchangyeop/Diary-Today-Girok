@@ -22,7 +22,6 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
     if (!userId) {
       return;
     }
-    console.log(month);
     const stopSync = cardRepository.syncCards(
       userId,
       (cards) => {
@@ -52,7 +51,6 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
       return updated;
     });
     cardRepository.saveCard(userId, card, month);
-    console.log(month);
   };
 
   const deleteCard = (card) => {
@@ -85,7 +83,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
           cards={cards}
           editorOpen={editorOpen}
           editOpen={editOpen}
-          month={month}
+          updateMonth={updateMonth}
         />
         {editOpen && (
           <Editor
@@ -96,7 +94,6 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
             deleteCard={deleteCard}
             editorOpen={editorOpen}
             editOpen={editOpen}
-            updateMonth={updateMonth}
             month={month}
           />
         )}

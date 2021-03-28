@@ -5,7 +5,7 @@ class CardRepository {
     const ref = firebaseDatabase.ref(`${userId}/${month}/cards`);
     ref.on('value', (snapshot) => {
       const value = snapshot.val();
-      value && onUpdate(value);
+      value ? onUpdate(value) : onUpdate('');
     });
     return () => ref.off();
   }

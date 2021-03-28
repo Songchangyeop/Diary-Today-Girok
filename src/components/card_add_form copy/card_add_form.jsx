@@ -25,7 +25,7 @@ const CardAddForm = memo(({ FileInput, onAdd, month }) => {
       id: Date.now(), //uuid
       theme: themeRef.current.value,
       date: dateRef.current.value,
-      message: messageRef.current.value || '',
+      message: messageRef.current.value || '일기가 없습니다!',
       fileName: file.fileName || '',
       fileURL: file.fileURL || '',
       month: month,
