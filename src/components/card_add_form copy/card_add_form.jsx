@@ -14,8 +14,8 @@ const CardAddForm = memo(({ FileInput, onAdd, month }) => {
 
   const getdate = new Date();
   const year = getdate.getFullYear();
-  const months = getdate.getMonth();
-  const day = getdate.getDate();
+  const day = new Date(year, month, 0).getDate();
+  console.log(day);
 
   const onFileChange = (file) => {
     setFile({
@@ -54,11 +54,11 @@ const CardAddForm = memo(({ FileInput, onAdd, month }) => {
           name="date"
           placeholder="date"
         >
-          <option placeholder="light">1</option>
-          <option placeholder="dark">2</option>
-          <option placeholder="colorful">3</option>
-          <option placeholder="colorful">4</option>
-          <option placeholder="colorful">5</option>
+          <option placeholder="light">01</option>
+          <option placeholder="dark">02</option>
+          <option placeholder="colorful">03</option>
+          <option placeholder="colorful">04</option>
+          <option placeholder="colorful">05</option>
         </select>
         <h1>일</h1>
       </div>

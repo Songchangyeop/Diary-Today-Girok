@@ -17,10 +17,7 @@ const Card = memo(({ card, readDiary, openDiary }) => {
     // <li className={`${styles.card} ${getStyles(theme)}`}>
     <li className={styles.card} onClick={selectCard}>
       <h3 className={styles.date}>{date} th</h3>
-      <img className={styles.avatar} src={url} alt="profile" />
-      <div className={styles.info}>
-        {/* <p className={styles.message}>{message}</p> */}
-      </div>
+      <img className={styles.photo} src={url} alt="Todayphoto" />
     </li>
   );
 });

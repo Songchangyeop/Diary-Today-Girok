@@ -8,7 +8,7 @@
   width: 10rem;
   height: 12rem;
   max-width: 30rem;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
   margin-right: 1em;
   padding: 0.2em 0;
   border-top: 1px solid makerLightGrey;
@@ -40,25 +40,32 @@
   color: makerWhite;
 }
 
-.avatar {
+.photo {
   width: 10em;
   height: 10em;
   padding: 1em;
-  margin-left: 0.5em;
-  margin-right: 1em;
   border-radius: 50%;
-}
-
-.info {
-  width: 100%;
-}
-
-.message {
-  margin: 0;
-  font-size: 0.8rem;
-  margin-bottom: 0.2em;
 }
 
 .date {
   margin: 0;
+}
+
+@media screen and (max-width: 550px) {
+  .card {
+    width: 5rem;
+    height: 6.5rem;
+    margin-bottom: 1em;
+    margin-right: 0.3em;
+  }
+  .photo {
+    padding: 0.7em;
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .date {
+    padding-top: 0.3em;
+    font-size: 1em;
+  }
 }
