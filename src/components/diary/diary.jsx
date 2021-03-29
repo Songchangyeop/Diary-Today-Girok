@@ -2,14 +2,23 @@ import React from 'react';
 import styles from './diary.module.css';
 const DEFAULT_IMAGE = 'images/default_logo.png';
 
-const Diary = ({ readCard }) => {
+const Diary = ({ readCard, openDiary }) => {
   const { date, fileURL, message } = readCard;
-
   const url = fileURL || DEFAULT_IMAGE;
+
+  const closeDiary = (event) => {
+    openDiary(event.target.value);
+  };
+
   return (
     <div className={styles.container}>
       <h2 className={styles.date}>{date} th</h2>
-      <button className={styles.closeBtn} type="button">
+      <button
+        className={styles.closeBtn}
+        type="button"
+        value="close"
+        onClick={closeDiary}
+      >
         닫기
       </button>
       <img className={styles.img} src={url} alt="feel" />

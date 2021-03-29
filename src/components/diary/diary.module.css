@@ -6,13 +6,15 @@
   flex-direction: column;
   align-items: center;
   width: 30rem;
+  height: 30rem;
+  overflow-y: auto;
   border: 1px;
   border-top: 1px solid makerLightGrey;
   border-left: 1px solid makerLightGrey;
   border-radius: 1em;
   box-shadow: 6px 6px 8px 0px makerShadow;
   z-index: 3;
-  background-color: #ffffcf;
+  background-color: #fffde7;
 }
 
 .closeBtn {
@@ -24,12 +26,19 @@
   border: 0;
   border-radius: 1em;
   outline: none;
+  cursor: pointer;
 }
 
 .img {
-  width: 10rem;
+  width: 50%;
 }
 
 .message {
   padding: 1em;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    width: 90%;
+  }
 }

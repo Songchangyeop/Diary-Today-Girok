@@ -8,6 +8,7 @@
   /* max-width: 80rem; */
   flex-direction: column;
   background-color: makerWhite;
+  z-index: 2;
 }
 
 .dairyContainer {
@@ -25,6 +26,7 @@
   display: flex;
   flex: 1;
   min-height: 0;
+  z-index: 2;
 }
 
 @media screen and (max-width: mediaQuery) {

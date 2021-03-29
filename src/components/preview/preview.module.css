@@ -3,6 +3,7 @@
 .preview {
   flex-basis: 100%;
   overflow-y: auto;
+  z-index: 2;
 }
 
 .container {

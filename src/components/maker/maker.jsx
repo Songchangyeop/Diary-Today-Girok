@@ -83,7 +83,11 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
   };
 
   const openDiary = (value) => {
-    setDiaryOpen(true);
+    if (value === 'open') {
+      setDiaryOpen(true);
+    } else {
+      setDiaryOpen(false);
+    }
   };
 
   return (
@@ -91,7 +95,9 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
       <Header onLogout={onLogout} />
       <div className={styles.container}>
         <div className={styles.dairyContainer}>
-          {diaryOpen && <Diary readCard={readCard}></Diary>}
+          {diaryOpen && (
+            <Diary readCard={readCard} openDiary={openDiary}></Diary>
+          )}
         </div>
         <Preview
           cards={cards}

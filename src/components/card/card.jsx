@@ -8,8 +8,9 @@ const Card = memo(({ card, readDiary, openDiary }) => {
   const url = fileURL || DEFAULT_IMAGE;
 
   const selectCard = () => {
+    const value = 'open';
     readDiary(card);
-    openDiary();
+    openDiary(value);
   };
 
   return (
