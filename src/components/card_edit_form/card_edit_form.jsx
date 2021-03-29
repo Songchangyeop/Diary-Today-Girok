@@ -48,6 +48,8 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
           <option placeholder="light">1</option>
           <option placeholder="dark">2</option>
           <option placeholder="colorful">3</option>
+          <option placeholder="dark">4</option>
+          <option placeholder="colorful">5</option>
         </select>
         <h1>일</h1>
       </div>

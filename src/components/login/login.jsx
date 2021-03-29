@@ -52,6 +52,20 @@ const Login = ({ authService }) => {
               Github을(를) 사용하여 로그인
             </button>
           </li>
+          <li className={styles.item}>
+            <button
+              className={styles.button}
+              onClick={onLogin}
+              value="Facebook"
+            >
+              <img
+                className={styles.logo}
+                src="images/facebook.png"
+                alt="facebook"
+              />
+              Facebook을(를) 사용하여 로그인
+            </button>
+          </li>
         </ul>
       </section>
       <Footer />

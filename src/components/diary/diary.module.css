@@ -27,6 +27,11 @@
   border-radius: 1em;
   outline: none;
   cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.closeBtn:hover {
+  transform: scale(1.1);
 }
 
 .img {

@@ -12,6 +12,11 @@ const CardAddForm = memo(({ FileInput, onAdd, month }) => {
     fileURL: null,
   });
 
+  const getdate = new Date();
+  const year = getdate.getFullYear();
+  const months = getdate.getMonth();
+  const day = getdate.getDate();
+
   const onFileChange = (file) => {
     setFile({
       fileName: file.name,
@@ -20,15 +25,16 @@ const CardAddForm = memo(({ FileInput, onAdd, month }) => {
   };
 
   const onSubmit = (event) => {
+    let today = `${year}${month}${dateRef.current.value}`;
     event.preventDefault();
     const card = {
-      id: Date.now(), //uuid
+      id: today, //uuid
       theme: themeRef.current.value,
       date: dateRef.current.value,
       message: messageRef.current.value || '일기가 없습니다!',
       fileName: file.fileName || '',
       fileURL: file.fileURL || '',
-      month: month,
+      today: today,
     };
     formRef.current.reset();
     setFile({
@@ -51,6 +57,8 @@ const CardAddForm = memo(({ FileInput, onAdd, month }) => {
           <option placeholder="light">1</option>
           <option placeholder="dark">2</option>
           <option placeholder="colorful">3</option>
+          <option placeholder="colorful">4</option>
+          <option placeholder="colorful">5</option>
         </select>
         <h1>일</h1>
       </div>
