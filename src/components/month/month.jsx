@@ -1,35 +1,24 @@
 import React, { useRef } from 'react';
 import styles from './month.module.css';
-const Month = ({ updateMonth }) => {
+const Month = ({ updateMonth, showMonthList, index, changeCurrentMonth }) => {
   const monthRef = useRef();
 
-  const setNewMonth = () => {
-    updateMonth(monthRef.current.value);
+  const setNewMonth = (event) => {
+    const newMonth = `0${monthRef.current.value}`;
+    updateMonth(newMonth);
+    showMonthList();
+    changeCurrentMonth(newMonth);
   };
+
   return (
-    <form className={styles.form}>
-      <select
-        ref={monthRef}
-        className={styles.monthSelect}
-        name="month"
-        placeholder="month"
-        onChange={setNewMonth}
-      >
-        <option placeholder="1">01</option>
-        <option placeholder="2">02</option>
-        <option placeholder="3">03</option>
-        <option placeholder="4">04</option>
-        <option placeholder="5">05</option>
-        <option placeholder="6">06</option>
-        <option placeholder="7">07</option>
-        <option placeholder="8">08</option>
-        <option placeholder="9">09</option>
-        <option placeholder="10">10</option>
-        <option placeholder="11">11</option>
-        <option placeholder="12">12</option>
-      </select>
-      <span className={styles.text}>월</span>
-    </form>
+    <li
+      ref={monthRef}
+      className={styles.monthList}
+      value={index + 1}
+      onClick={setNewMonth}
+    >
+      {index + 1}
+    </li>
   );
 };
 

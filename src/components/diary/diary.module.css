@@ -39,7 +39,7 @@
 }
 
 .message {
-  padding: 1em;
+  padding: 2.5em 1em 1em 1em;
 }
 
 @media screen and (max-width: 500px) {

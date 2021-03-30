@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '../card/card';
 import Month from '../month/month';
 
@@ -12,14 +12,48 @@ const Preview = ({
   readDiary,
   openDiary,
 }) => {
+  const [openMonth, setOpenMonth] = useState(false);
+  const [currentMonth, setCurrentMonth] = useState('01');
+  const monthCount = 12;
+
   const btnClick = (e) => {
     editorOpen(e.target.value);
   };
+
+  const showMonthList = () => {
+    if (openMonth === true) {
+      setOpenMonth(false);
+    } else {
+      setOpenMonth(true);
+    }
+  };
+
+  const changeCurrentMonth = (changeMonth) => {
+    setCurrentMonth(changeMonth);
+  };
+
   return (
     <section className={styles.preview}>
       <div className={styles.container}>
         <h1 className={styles.title}>Diary Preview</h1>
-        <Month updateMonth={updateMonth}></Month>
+        <div
+          className={`${styles.month}  ${openMonth && styles.clickMonth}`}
+          onClick={showMonthList}
+        >
+          <span>{`${currentMonth}월`}</span>
+          <ul className={styles.dropDown}>
+            {openMonth &&
+              [...Array(monthCount)].map((num, index) => (
+                <Month
+                  key={index}
+                  updateMonth={updateMonth}
+                  showMonthList={showMonthList}
+                  index={index}
+                  changeCurrentMonth={changeCurrentMonth}
+                ></Month>
+              ))}
+          </ul>
+        </div>
       </div>
       <ul className={styles.cards}>
         {Object.keys(cards).map((key) => (

@@ -1,4 +1,4 @@
-@value makerGreen from '../../common/colors.css';
+@value makerGreen, makerWhite from '../../common/colors.css';
 
 .preview {
   flex-basis: 100%;
@@ -9,12 +9,13 @@
 .container {
   display: flex;
   padding: 0 1em;
+  position: relative;
 }
 
 .title {
   flex: 1 1 70%;
   text-align: center;
-  margin-bottom: 1em;
+  margin: 1em 0;
 }
 
 .cards {
@@ -46,4 +47,50 @@
   height: 4.5em;
   right: 2em;
   bottom: 5em;
+}
+
+.month {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3em;
+  height: 2em;
+  border: 0;
+  font-size: 1.2em;
+  background-color: #f48fb1;
+  border-radius: 0.5em;
+  outline: none;
+  right: 1em;
+  top: 0.5em;
+  transition: width 200ms ease;
+  cursor: pointer;
+}
+
+.month:hover {
+  width: 4em;
+}
+
+.clickMonth {
+  width: 4em;
+}
+
+.dropDown {
+  position: absolute;
+  right: 0;
+  top: 1em;
+  max-height: 7em;
+  overflow-y: scroll;
+  z-index: 2;
+}
+
+.dropDown::-webkit-scrollbar {
+  width: 3px;
+}
+
+.dropDown::-webkit-scrollbar-thumb {
+  background-color: #fce4ec;
+}
+.dropDown::-webkit-scrollbar-track {
+  background-color: #f48fb1;
 }

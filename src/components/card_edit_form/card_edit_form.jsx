@@ -45,11 +45,11 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
           value={date}
           onChange={onChange}
         >
-          <option placeholder="light">1</option>
-          <option placeholder="dark">2</option>
-          <option placeholder="colorful">3</option>
-          <option placeholder="dark">4</option>
-          <option placeholder="colorful">5</option>
+          <option placeholder="light">01</option>
+          <option placeholder="dark">02</option>
+          <option placeholder="colorful">03</option>
+          <option placeholder="dark">04</option>
+          <option placeholder="colorful">05</option>
         </select>
         <h1>일</h1>
       </div>
