@@ -3,7 +3,7 @@ import Button from '../button/button';
 import Dropdown from '../dropdown/dropdown';
 import styles from './card_add_form.module.css';
 
-const CardAddForm = memo(({ FileInput, onAdd, month }) => {
+const CardAddForm = memo(({ FileInput, onAdd, month, cards }) => {
   const formRef = useRef();
   const themeRef = useRef();
   const messageRef = useRef();
@@ -26,8 +26,15 @@ const CardAddForm = memo(({ FileInput, onAdd, month }) => {
   };
 
   const onSubmit = (event) => {
-    let today = `${year}${month}${currentDay}`;
     event.preventDefault();
+    const cardsToArr = Object.entries(cards);
+    for (let i = 0; i < cardsToArr.length; i++) {
+      if (cardsToArr[i][1].date === currentDay) {
+        alert(`${currentDay}일 일기는 이미 작성되어 있습니다!`);
+        return;
+      }
+    }
+    let today = `${year}${month}${currentDay}`;
     const card = {
       id: today, //uuid
       theme: themeRef.current.value,

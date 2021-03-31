@@ -29,9 +29,15 @@ const Editor = ({
         </button>
       )}
 
-      <h1 className={styles.title}>Diary Maker</h1>
-      <CardAddForm FileInput={FileInput} onAdd={addCard} month={month} />
+      <h1 className={styles.title}>일기 쓰기</h1>
+      <CardAddForm
+        FileInput={FileInput}
+        onAdd={addCard}
+        month={month}
+        cards={cards}
+      />
       <div className={styles.bar}></div>
+      <h1 className={styles.title}>일기 편집</h1>
       {Object.keys(cards).map((key) => (
         <CardEditForm
           key={key}

@@ -8,7 +8,6 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard, month }) => {
   const messageRef = useRef();
 
   const [openDay, setOpenDay] = useState(false);
-  const [currentDay, setCurrentDay] = useState('1');
 
   const getdate = new Date();
   const year = getdate.getFullYear();
@@ -28,9 +27,6 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard, month }) => {
     if (event.currentTarget == null) {
       return;
     }
-    console.log(event);
-    console.log(event.currentTarget.value);
-    console.log(event.currentTarget.name);
     event.preventDefault();
     name
       ? updateCard({
@@ -54,9 +50,6 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard, month }) => {
       setOpenDay(true);
     }
   };
-  const changeCurrentDay = (changeDay) => {
-    setCurrentDay(changeDay);
-  };
 
   return (
     <form className={styles.form}>
@@ -73,7 +66,6 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard, month }) => {
                   key={index}
                   showDayList={showDayList}
                   index={index}
-                  changeCurrentDay={changeCurrentDay}
                   value={'dayEdit'}
                   onChange={onChange}
                 ></Dropdown>

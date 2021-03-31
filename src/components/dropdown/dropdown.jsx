@@ -24,7 +24,6 @@ const Dropdown = ({
       changeCurrentDay(showDate);
     } else {
       showDayList();
-      changeCurrentDay(showDate);
       onChange(event, 'date');
     }
   };
@@ -33,7 +32,7 @@ const Dropdown = ({
     <li
       ref={dateRef}
       className={styles.monthList}
-      value={index + 1}
+      value={String(index + 1)}
       onClick={setNewMonthOrselectDate}
     >
       {index + 1}
