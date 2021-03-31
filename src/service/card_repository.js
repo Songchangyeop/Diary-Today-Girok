@@ -10,7 +10,6 @@ class CardRepository {
     return () => ref.off();
   }
   saveCard(userId, card, month) {
-    console.log(month);
     firebaseDatabase.ref(`${userId}/${month}/cards/${card.id}`).set(card);
   }
 

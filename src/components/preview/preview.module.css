@@ -89,8 +89,8 @@
 }
 
 .dropDown::-webkit-scrollbar-thumb {
-  background-color: #fce4ec;
+  background-color: #f48fb1;
 }
 .dropDown::-webkit-scrollbar-track {
-  background-color: #f48fb1;
+  background-color: #fce4ec;
 }

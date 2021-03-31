@@ -1,21 +1,22 @@
 import React, { memo, useRef, useState } from 'react';
 import Button from '../button/button';
+import Dropdown from '../dropdown/dropdown';
 import styles from './card_add_form.module.css';
 
 const CardAddForm = memo(({ FileInput, onAdd, month }) => {
   const formRef = useRef();
   const themeRef = useRef();
-  const dateRef = useRef();
   const messageRef = useRef();
   const [file, setFile] = useState({
     fileName: null,
     fileURL: null,
   });
+  const [openDay, setOpenDay] = useState(false);
+  const [currentDay, setCurrentDay] = useState('1');
 
   const getdate = new Date();
   const year = getdate.getFullYear();
   const day = new Date(year, month, 0).getDate();
-  console.log(day);
 
   const onFileChange = (file) => {
     setFile({
@@ -25,12 +26,12 @@ const CardAddForm = memo(({ FileInput, onAdd, month }) => {
   };
 
   const onSubmit = (event) => {
-    let today = `${year}${month}${dateRef.current.value}`;
+    let today = `${year}${month}${currentDay}`;
     event.preventDefault();
     const card = {
       id: today, //uuid
       theme: themeRef.current.value,
-      date: dateRef.current.value,
+      date: currentDay,
       message: messageRef.current.value || '일기가 없습니다!',
       fileName: file.fileName || '',
       fileURL: file.fileURL || '',
@@ -44,39 +45,41 @@ const CardAddForm = memo(({ FileInput, onAdd, month }) => {
     onAdd(card);
   };
 
+  const showDayList = () => {
+    if (openDay === true) {
+      setOpenDay(false);
+    } else {
+      setOpenDay(true);
+    }
+  };
+  const changeCurrentDay = (changeDay) => {
+    setCurrentDay(changeDay);
+  };
+
   return (
     <form ref={formRef} className={styles.form}>
       <div className={styles.date}>
         <h1>오늘은</h1>
-        <select
-          ref={dateRef}
-          className={styles.dateSelect}
-          name="date"
-          placeholder="date"
+        <div
+          className={`${styles.dateContainer} ${openDay && styles.clickDay}`}
+          onClick={showDayList}
         >
-          <option placeholder="light">01</option>
-          <option placeholder="dark">02</option>
-          <option placeholder="colorful">03</option>
-          <option placeholder="colorful">04</option>
-          <option placeholder="colorful">05</option>
-        </select>
-        <h1>일</h1>
+          <ul className={styles.dropDown}>
+            {openDay &&
+              [...Array(day)].map((num, index) => (
+                <Dropdown
+                  key={index}
+                  showDayList={showDayList}
+                  index={index}
+                  changeCurrentDay={changeCurrentDay}
+                  value={'dayAdd'}
+                ></Dropdown>
+              ))}
+          </ul>
+          <span className={styles.dayText}>{`${currentDay} 일`}</span>
+        </div>
       </div>
       <h1 className={styles.feel}>오늘의 기분은</h1>
-      {/* <input
-        ref={nameRef}
-        className={styles.input}
-        type="text"
-        name="name"
-        placeholder="Name"
-      /> */}
-      {/* <input
-        ref={companyRef}
-        className={styles.input}
-        type="text"
-        name="company"
-        placeholder="Company"
-      /> */}
 
       <select
         ref={themeRef}
@@ -88,20 +91,7 @@ const CardAddForm = memo(({ FileInput, onAdd, month }) => {
         <option placeholder="dark">나빠요</option>
         <option placeholder="colorful">우울해요</option>
       </select>
-      {/* <input
-        ref={titleRef}
-        className={styles.input}
-        type="text"
-        name="title"
-        placeholder="Title"
-      />
-      <input
-        ref={emailRef}
-        className={styles.input}
-        type="text"
-        name="email"
-        placeholder="Email"
-      /> */}
+
       <textarea
         ref={messageRef}
         className={styles.textarea}

@@ -28,6 +28,7 @@
 
 .date {
   display: flex;
+  align-items: center;
   width: 100%;
 }
 
@@ -65,4 +66,52 @@
   border: 1px solid makerBlack;
   flex-basis: 100%;
   margin-bottom: 1em;
+}
+
+.dropDown {
+  position: absolute;
+  top: 2em;
+  right: 0em;
+  max-height: 7em;
+  overflow-y: scroll;
+  z-index: 2;
+}
+
+.dropDown::-webkit-scrollbar {
+  width: 3px;
+}
+
+.dropDown::-webkit-scrollbar-thumb {
+  background-color: #f48fb1;
+}
+.dropDown::-webkit-scrollbar-track {
+  background-color: #fce4ec;
+}
+
+.dateContainer {
+  background-color: beige;
+  width: 3em;
+  height: 2em;
+  margin-left: 1em;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 200ms ease;
+  border-radius: 0.5em;
+}
+
+.dateContainer > h1 {
+  margin: auto;
+}
+
+.dateContainer:hover {
+  width: 3.5em;
+  height: 2.5em;
+}
+
+.clickDay {
+  width: 3.5em;
+  height: 2.5em;
 }

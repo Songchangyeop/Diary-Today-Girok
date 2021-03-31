@@ -1,11 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Button from '../button/button';
+import Dropdown from '../dropdown/dropdown';
 import styles from './card_edit_form.module.css';
 
-const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
+const CardEditForm = ({ FileInput, card, updateCard, deleteCard, month }) => {
   const themeRef = useRef();
-  const dateRef = useRef();
   const messageRef = useRef();
+
+  const [openDay, setOpenDay] = useState(false);
+  const [currentDay, setCurrentDay] = useState('1');
+
+  const getdate = new Date();
+  const year = getdate.getFullYear();
+  const day = new Date(year, month, 0).getDate();
 
   const { id, date, message, theme, fileName } = card;
 
@@ -17,42 +24,65 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
     });
   };
 
-  const onChange = (event) => {
+  const onChange = (event, name) => {
     if (event.currentTarget == null) {
       return;
     }
+    console.log(event);
     console.log(event.currentTarget.value);
+    console.log(event.currentTarget.name);
     event.preventDefault();
-    updateCard({
-      ...card,
-      [event.currentTarget.name]: event.currentTarget.value,
-    });
+    name
+      ? updateCard({
+          ...card,
+          [name]: event.currentTarget.value,
+        })
+      : updateCard({
+          ...card,
+          [event.currentTarget.name]: event.currentTarget.value,
+        });
   };
 
   const onSubmit = () => {
     deleteCard(card);
   };
 
+  const showDayList = () => {
+    if (openDay === true) {
+      setOpenDay(false);
+    } else {
+      setOpenDay(true);
+    }
+  };
+  const changeCurrentDay = (changeDay) => {
+    setCurrentDay(changeDay);
+  };
+
   return (
     <form className={styles.form}>
       <div className={styles.date}>
         <h1>오늘은</h1>
-        <select
-          ref={dateRef}
-          className={styles.dateSelect}
-          name="date"
-          placeholder="date"
-          value={date}
-          onChange={onChange}
+        <div
+          className={`${styles.dateContainer} ${openDay && styles.clickDay}`}
+          onClick={showDayList}
         >
-          <option placeholder="light">01</option>
-          <option placeholder="dark">02</option>
-          <option placeholder="colorful">03</option>
-          <option placeholder="dark">04</option>
-          <option placeholder="colorful">05</option>
-        </select>
-        <h1>일</h1>
+          <ul className={styles.dropDown}>
+            {openDay &&
+              [...Array(day)].map((num, index) => (
+                <Dropdown
+                  key={index}
+                  showDayList={showDayList}
+                  index={index}
+                  changeCurrentDay={changeCurrentDay}
+                  value={'dayEdit'}
+                  onChange={onChange}
+                ></Dropdown>
+              ))}
+          </ul>
+          <span className={styles.dayText}>{`${date} 일`}</span>
+        </div>
       </div>
+
       <h1 className={styles.feel}>오늘의 기분은</h1>
       <select
         ref={themeRef}

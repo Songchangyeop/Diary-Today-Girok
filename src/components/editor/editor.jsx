@@ -13,10 +13,9 @@ const Editor = ({
   editOpen,
   month,
 }) => {
-  const btnClick = (e) => {
-    editorOpen(e.target.value);
+  const btnClick = (event) => {
+    editorOpen(event.target.value);
   };
-  console.log(cards);
   return (
     <section className={styles.editor}>
       {editOpen && (
@@ -40,6 +39,7 @@ const Editor = ({
           card={cards[key]}
           updateCard={updateCard}
           deleteCard={deleteCard}
+          month={month}
         />
       ))}
     </section>

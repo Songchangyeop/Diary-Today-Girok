@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Card from '../card/card';
-import Month from '../month/month';
-
+import Dropdown from '../dropdown/dropdown';
 import styles from './preview.module.css';
 
 const Preview = ({
@@ -13,7 +12,7 @@ const Preview = ({
   openDiary,
 }) => {
   const [openMonth, setOpenMonth] = useState(false);
-  const [currentMonth, setCurrentMonth] = useState('01');
+  const [currentMonth, setCurrentMonth] = useState('1');
   const monthCount = 12;
 
   const btnClick = (e) => {
@@ -44,13 +43,14 @@ const Preview = ({
           <ul className={styles.dropDown}>
             {openMonth &&
               [...Array(monthCount)].map((num, index) => (
-                <Month
+                <Dropdown
                   key={index}
                   updateMonth={updateMonth}
                   showMonthList={showMonthList}
                   index={index}
                   changeCurrentMonth={changeCurrentMonth}
-                ></Month>
+                  value={'month'}
+                ></Dropdown>
               ))}
           </ul>
         </div>
