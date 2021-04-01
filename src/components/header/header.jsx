@@ -2,7 +2,9 @@ import React, { memo } from 'react';
 import styles from './header.module.css';
 
 const Header = memo(({ onLogout, authService }) => {
-  console.log('header');
+  const reload = () => {
+    window.location.reload();
+  };
   return (
     <header className={styles.header}>
       {onLogout && (
@@ -11,7 +13,9 @@ const Header = memo(({ onLogout, authService }) => {
         </button>
       )}
 
-      <h1 className={styles.title}>📝 오늘, 기록</h1>
+      <h1 className={styles.title} onClick={reload}>
+        📝 오늘, 기록
+      </h1>
     </header>
   );
 });

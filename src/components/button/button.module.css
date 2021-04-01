@@ -9,6 +9,7 @@
   padding: 0.5em;
   flex: 1 1 50%;
   font-size: 0.8rem;
+  outline: none;
 }
 
 .button:hover {

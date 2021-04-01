@@ -1,0 +1,26 @@
+@value makerWhite, makerBlack from '../../common/colors.css';
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  position: absolute;
+  background-color: #fff9c4;
+  z-index: 2;
+  bottom: 2em;
+  margin: auto;
+  border-radius: 1em;
+  padding: 2em 0;
+}
+
+.close {
+  border: 0;
+  transition: all 200ms ease;
+  border-radius: 1em;
+  outline: none;
+}
+
+.close:hover {
+  background-color: #bdb9b7;
+}

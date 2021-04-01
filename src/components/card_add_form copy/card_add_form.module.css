@@ -1,6 +1,7 @@
 @value makerWhite, makerBlack from '../../common/colors.css';
 
 .form {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -70,7 +71,7 @@
 
 .dropDown {
   position: absolute;
-  top: 2em;
+  top: 1.5em;
   right: 0em;
   max-height: 7em;
   overflow-y: scroll;
@@ -82,14 +83,14 @@
 }
 
 .dropDown::-webkit-scrollbar-thumb {
-  background-color: #f48fb1;
+  background-color: #ccc0ae;
 }
 .dropDown::-webkit-scrollbar-track {
-  background-color: #fce4ec;
+  background-color: #ffd54f;
 }
 
 .dateContainer {
-  background-color: beige;
+  background-color: #ffd54f;
   width: 3em;
   height: 2em;
   margin-left: 1em;
@@ -108,10 +109,8 @@
 
 .dateContainer:hover {
   width: 3.5em;
-  height: 2.5em;
 }
 
 .clickDay {
   width: 3.5em;
-  height: 2.5em;
 }

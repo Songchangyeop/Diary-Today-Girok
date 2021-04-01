@@ -25,6 +25,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
     if (!userId) {
       return;
     }
+
     const stopSync = cardRepository.syncCards(
       userId,
       (cards) => {

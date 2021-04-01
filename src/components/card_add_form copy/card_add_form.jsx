@@ -1,6 +1,7 @@
 import React, { memo, useRef, useState } from 'react';
 import Button from '../button/button';
 import Dropdown from '../dropdown/dropdown';
+import Modal from '../modal/modal';
 import styles from './card_add_form.module.css';
 
 const CardAddForm = memo(({ FileInput, onAdd, month, cards }) => {
@@ -13,7 +14,7 @@ const CardAddForm = memo(({ FileInput, onAdd, month, cards }) => {
   });
   const [openDay, setOpenDay] = useState(false);
   const [currentDay, setCurrentDay] = useState('1');
-
+  const [openModal, setOpenModal] = useState(false);
   const getdate = new Date();
   const year = getdate.getFullYear();
   const day = new Date(year, month, 0).getDate();
@@ -30,7 +31,7 @@ const CardAddForm = memo(({ FileInput, onAdd, month, cards }) => {
     const cardsToArr = Object.entries(cards);
     for (let i = 0; i < cardsToArr.length; i++) {
       if (cardsToArr[i][1].date === currentDay) {
-        alert(`${currentDay}일 일기는 이미 작성되어 있습니다!`);
+        setOpenModal(true);
         return;
       }
     }
@@ -63,8 +64,15 @@ const CardAddForm = memo(({ FileInput, onAdd, month, cards }) => {
     setCurrentDay(changeDay);
   };
 
+  const showModal = () => {
+    setOpenModal(false);
+  };
+
   return (
     <form ref={formRef} className={styles.form}>
+      {openModal && (
+        <Modal showModal={showModal} currentDay={currentDay}></Modal>
+      )}
       <div className={styles.date}>
         <h1>오늘은</h1>
         <div

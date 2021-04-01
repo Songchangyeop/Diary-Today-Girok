@@ -28,14 +28,16 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard, month }) => {
       return;
     }
     event.preventDefault();
+    let value = event.currentTarget.value;
     name
       ? updateCard({
           ...card,
-          [name]: event.currentTarget.value,
+          [name]: value,
+          [card.key]: `${year}${month}${value}`,
         })
       : updateCard({
           ...card,
-          [event.currentTarget.name]: event.currentTarget.value,
+          [event.currentTarget.name]: value,
         });
   };
 

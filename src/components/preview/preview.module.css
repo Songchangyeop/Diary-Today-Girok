@@ -58,7 +58,7 @@
   height: 2em;
   border: 0;
   font-size: 1.2em;
-  background-color: #f48fb1;
+  background-color: #ffd54f;
   border-radius: 0.5em;
   outline: none;
   right: 1em;
@@ -89,8 +89,8 @@
 }
 
 .dropDown::-webkit-scrollbar-thumb {
-  background-color: #f48fb1;
+  background-color: #ccc0ae;
 }
 .dropDown::-webkit-scrollbar-track {
-  background-color: #fce4ec;
+  background-color: #ffd54f;
 }
