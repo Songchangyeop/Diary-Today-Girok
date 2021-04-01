@@ -6,7 +6,7 @@ import styles from './editor.module.css';
 const Editor = ({
   FileInput,
   cards,
-  addCard,
+  createCard,
   updateCard,
   deleteCard,
   editorOpen,
@@ -32,7 +32,7 @@ const Editor = ({
       <h1 className={styles.title}>일기 쓰기</h1>
       <CardAddForm
         FileInput={FileInput}
-        onAdd={addCard}
+        onAdd={createCard}
         month={month}
         cards={cards}
       />
@@ -44,6 +44,7 @@ const Editor = ({
           FileInput={FileInput}
           card={cards[key]}
           updateCard={updateCard}
+          createCard={createCard}
           deleteCard={deleteCard}
           month={month}
         />

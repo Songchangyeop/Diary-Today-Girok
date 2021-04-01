@@ -48,7 +48,24 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
     });
   }, [authService, userId, history]);
 
-  const createOrupdateCard = (card) => {
+  const updateCard = (card) => {
+    console.log(card);
+    setCards((cards) => {
+      const updated = { ...cards };
+      delete updated[card.beforeId];
+      return updated;
+    });
+    cardRepository.removeCard(userId, card, month);
+
+    setCards((cards) => {
+      const updated = { ...cards };
+      updated[card.id] = card;
+      return updated;
+    });
+    cardRepository.saveCard(userId, card, month);
+  };
+
+  const createCard = (card) => {
     setCards((cards) => {
       const updated = { ...cards };
       updated[card.id] = card;
@@ -112,8 +129,8 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
           <Editor
             FileInput={FileInput}
             cards={cards}
-            addCard={createOrupdateCard}
-            updateCard={createOrupdateCard}
+            createCard={createCard}
+            updateCard={updateCard}
             deleteCard={deleteCard}
             editorOpen={editorOpen}
             editOpen={editOpen}

@@ -43,7 +43,7 @@ const CardAddForm = memo(({ FileInput, onAdd, month, cards }) => {
       message: messageRef.current.value || '일기가 없습니다!',
       fileName: file.fileName || '',
       fileURL: file.fileURL || '',
-      today: today,
+      beforeId: today,
     };
     formRef.current.reset();
     setFile({

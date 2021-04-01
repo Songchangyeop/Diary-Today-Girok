@@ -24,7 +24,7 @@ const Dropdown = ({
       changeCurrentDay(showDate);
     } else {
       showDayList();
-      onChange(event, 'date');
+      onChange(event, 'date', 'id', 'beforeId');
     }
   };
 

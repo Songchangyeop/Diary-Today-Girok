@@ -3,7 +3,14 @@ import Button from '../button/button';
 import Dropdown from '../dropdown/dropdown';
 import styles from './card_edit_form.module.css';
 
-const CardEditForm = ({ FileInput, card, updateCard, deleteCard, month }) => {
+const CardEditForm = ({
+  FileInput,
+  card,
+  updateCard,
+  deleteCard,
+  createCard,
+  month,
+}) => {
   const themeRef = useRef();
   const messageRef = useRef();
 
@@ -16,26 +23,28 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard, month }) => {
   const { id, date, message, theme, fileName } = card;
 
   const onFileChange = (file) => {
-    updateCard({
+    createCard({
       ...card,
       fileName: file.name,
       fileURL: file.url,
     });
   };
 
-  const onChange = (event, name) => {
+  const onChange = (event, name, newId, beforeId) => {
     if (event.currentTarget == null) {
       return;
     }
     event.preventDefault();
     let value = event.currentTarget.value;
+    let currentId = `${year}${month}${value}`;
     name
       ? updateCard({
           ...card,
           [name]: value,
-          [card.key]: `${year}${month}${value}`,
+          [newId]: currentId,
+          [beforeId]: card.id,
         })
-      : updateCard({
+      : createCard({
           ...card,
           [event.currentTarget.name]: value,
         });
