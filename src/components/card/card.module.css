@@ -18,6 +18,7 @@
   box-shadow: 6px 6px 8px 0px makerShadow;
   transition: transform 150ms ease;
   cursor: pointer;
+  z-index: 2;
 }
 
 .card:hover {

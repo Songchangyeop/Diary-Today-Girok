@@ -11,7 +11,12 @@
   bottom: 2em;
   margin: auto;
   border-radius: 1em;
-  padding: 2em 0;
+  padding: 2em 0.5em;
+}
+
+.container {
+  display: flex;
+  width: 6rem;
 }
 
 .close {
@@ -19,8 +24,16 @@
   transition: all 200ms ease;
   border-radius: 1em;
   outline: none;
+  margin: 1em 0.3em 0 0.3em;
+  cursor: pointer;
+  flex: 1 1 50%;
 }
 
 .close:hover {
   background-color: #bdb9b7;
+}
+
+.span {
+  font-size: 0.8em;
+  text-align: center;
 }

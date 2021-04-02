@@ -13,7 +13,7 @@
   border-left: 1px solid makerLightGrey;
   border-radius: 1em;
   box-shadow: 6px 6px 8px 0px makerShadow;
-  z-index: 3;
+  z-index: 5;
   background-color: #fffde7;
 }
 
@@ -26,6 +26,13 @@
 }
 .container::-webkit-scrollbar-track {
   background-color: #ffd54f;
+}
+
+.emotion {
+  position: absolute;
+  width: 3em;
+  font-size: 3em;
+  left: 0.5em;
 }
 
 .closeBtn {

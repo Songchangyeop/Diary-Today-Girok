@@ -1,9 +1,12 @@
 @value makerWhite, makerGreen from '../../common/colors.css';
 
 .footer {
+  /* position: fixed;
+  bottom: 0; */
   width: 100%;
   background-color: #9ccc65;
   text-align: center;
+  z-index: 3;
 }
 
 .title {

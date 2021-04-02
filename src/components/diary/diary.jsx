@@ -3,7 +3,7 @@ import styles from './diary.module.css';
 const DEFAULT_IMAGE = 'images/default_logo.png';
 
 const Diary = ({ readCard, openDiary }) => {
-  const { date, fileURL, message } = readCard;
+  const { date, fileURL, message, emotion } = readCard;
   const url = fileURL || DEFAULT_IMAGE;
 
   const closeDiary = (event) => {
@@ -12,6 +12,9 @@ const Diary = ({ readCard, openDiary }) => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.emotion}>
+        <span>{emotion}</span>
+      </div>
       <h2 className={styles.date}>{date} th</h2>
       <button
         className={styles.closeBtn}

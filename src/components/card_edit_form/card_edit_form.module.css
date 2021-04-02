@@ -1,6 +1,7 @@
 @value makerWhite, makerBlack from '../../common/colors.css';
 
 .form {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -10,6 +11,7 @@
   /* border: 1px solid makerBlack; */
   /* border-left: 1px solid makerBlack; */
   margin-bottom: 1em;
+  z-index: 2;
 }
 .input,
 .textarea,
@@ -35,17 +37,6 @@
   font-size: 1.3em;
   border: 0;
   margin: 0 0.4em;
-}
-
-.feel {
-  flex: 1 1 60%;
-  text-align: end;
-}
-
-.select {
-  flex: 1 1 40%;
-  font: 1.3em;
-  color: makerBlack;
 }
 
 .fileInput {
@@ -110,4 +101,41 @@
 
 .clickDay {
   width: 3.5em;
+}
+
+.select {
+  position: absolute;
+  width: 3em;
+  top: 2.4em;
+  right: 5em;
+  margin-bottom: 0.5em;
+  font-size: 0.8em;
+  padding: 0;
+  line-height: 0.5em;
+  transition: transform 100ms ease;
+  color: makerBlack;
+}
+
+.select:hover {
+  transform: scale(1.1);
+}
+
+.selectEmotion {
+  font-size: 3.5em;
+  cursor: pointer;
+}
+
+.container {
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  height: 50%;
+  width: 50%;
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    left: 3%;
+    width: 100%;
+  }
 }

@@ -1,0 +1,10 @@
+.emotion {
+  font-size: 2rem;
+  margin: 0.3em;
+  cursor: pointer;
+  transition: transform 100ms ease;
+}
+
+.emotion:hover {
+  transform: scale(1.1);
+}

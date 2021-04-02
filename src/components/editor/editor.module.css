@@ -43,6 +43,28 @@
   margin: 2em 0;
 }
 
+.select {
+  position: absolute;
+  width: 3em;
+  top: 2.4em;
+  right: 5em;
+  margin-bottom: 0.5em;
+  font-size: 0.8em;
+  padding: 0;
+  line-height: 0.5em;
+  transition: transform 100ms ease;
+  color: makerBlack;
+}
+
+.select:hover {
+  transform: scale(1.1);
+}
+
+.selectEmotion {
+  font-size: 3.5em;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 550px) {
   .editor {
     flex-basis: 100%;

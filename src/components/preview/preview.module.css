@@ -1,6 +1,7 @@
 @value makerGreen, makerWhite from '../../common/colors.css';
 
 .preview {
+  position: relative;
   flex-basis: 100%;
   overflow-y: auto;
   z-index: 2;

@@ -1,0 +1,17 @@
+.container {
+  position: absolute;
+  top: 0;
+  width: 30em;
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 3;
+  background-color: #90caf9;
+  border-radius: 1em;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    width: 95%;
+  }
+}

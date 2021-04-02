@@ -9,6 +9,7 @@
   flex-direction: column;
   background-color: makerWhite;
   z-index: 2;
+  overflow: hidden;
 }
 
 .dairyContainer {
@@ -18,7 +19,7 @@
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  height: 80%;
   padding-top: 5em;
 }
 
@@ -27,10 +28,15 @@
   flex: 1;
   min-height: 0;
   z-index: 2;
+  overflow: hidden;
 }
 
 @media screen and (max-width: mediaQuery) {
   .container {
     flex-direction: column;
+  }
+
+  .dairyContainer {
+    top: 5em;
   }
 }

@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import Editor from '../editor/editor';
 import Preview from '../preview/preview';
 import Diary from '../diary/diary';
+import Feel from '../feel/feel';
 
 const Maker = ({ FileInput, authService, cardRepository }) => {
   const historyState = useHistory().state;
@@ -15,7 +16,6 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
   const [month, setMonth] = useState('01');
   const [readCard, setReadCard] = useState();
   const [diaryOpen, setDiaryOpen] = useState(false);
-
   const history = useHistory();
   const onLogout = useCallback(() => {
     authService.logout();
@@ -49,13 +49,12 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
   }, [authService, userId, history]);
 
   const updateCard = (card) => {
-    console.log(card);
     setCards((cards) => {
       const updated = { ...cards };
       delete updated[card.beforeId];
       return updated;
     });
-    cardRepository.removeCard(userId, card, month);
+    cardRepository.removeCard(userId, card, month, 'update');
 
     setCards((cards) => {
       const updated = { ...cards };

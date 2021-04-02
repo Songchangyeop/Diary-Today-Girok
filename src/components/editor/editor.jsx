@@ -12,6 +12,9 @@ const Editor = ({
   editorOpen,
   editOpen,
   month,
+  showFeelComponent,
+  currentEmotion,
+  changeClickedEditor,
 }) => {
   const btnClick = (event) => {
     editorOpen(event.target.value);
@@ -35,6 +38,8 @@ const Editor = ({
         onAdd={createCard}
         month={month}
         cards={cards}
+        showFeelComponent={showFeelComponent}
+        currentEmotion={currentEmotion}
       />
       <div className={styles.bar}></div>
       <h1 className={styles.title}>일기 편집</h1>
@@ -43,10 +48,13 @@ const Editor = ({
           key={key}
           FileInput={FileInput}
           card={cards[key]}
-          updateCard={updateCard}
-          createCard={createCard}
+          updateDay={updateCard}
+          updateCard={createCard}
           deleteCard={deleteCard}
           month={month}
+          cards={cards}
+          showFeelComponent={showFeelComponent}
+          changeClickedEditor={changeClickedEditor}
         />
       ))}
     </section>
