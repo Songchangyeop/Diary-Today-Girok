@@ -34,7 +34,7 @@ const Preview = ({
   return (
     <section className={styles.preview}>
       <div className={styles.container}>
-        <h1 className={styles.title}>일기장</h1>
+        <h1 className={styles.title}>일기 목록</h1>
         <div
           className={`${styles.month}  ${openMonth && styles.clickMonth}`}
           onClick={showMonthList}
