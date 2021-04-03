@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../button/button';
 import Dropdown from '../dropdown/dropdown';
 import Feel from '../feel/feel';
@@ -14,7 +14,7 @@ const CardEditForm = ({
   deleteCard,
   month,
 }) => {
-  const { id, date, message, fileName, emotion } = card;
+  const { date, message, fileName, emotion } = card;
   const [feelOpen, setfeelOpen] = useState(false);
   const [openDay, setOpenDay] = useState(false);
   const [openModal, setOpenModal] = useState(false);

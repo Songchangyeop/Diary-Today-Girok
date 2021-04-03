@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom';
 import Editor from '../editor/editor';
 import Preview from '../preview/preview';
 import Diary from '../diary/diary';
-import Feel from '../feel/feel';
 
 const Maker = ({ FileInput, authService, cardRepository }) => {
   const historyState = useHistory().state;

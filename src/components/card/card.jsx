@@ -3,7 +3,7 @@ import styles from './card.module.css';
 
 const DEFAULT_IMAGE = 'images/default_logo.png';
 const Card = memo(({ card, readDiary, openDiary }) => {
-  const { date, message, fileURL } = card;
+  const { date, fileURL } = card;
 
   const url = fileURL || DEFAULT_IMAGE;
 

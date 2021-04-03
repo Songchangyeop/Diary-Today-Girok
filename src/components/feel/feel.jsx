@@ -3,7 +3,7 @@ import Emotion from '../emotion/emotion';
 import styles from './feel.module.css';
 
 const Feel = ({ changeEmotion, showFeelComponent }) => {
-  const [emotions, setEmotion] = useState([
+  const [emotions] = useState([
     '😀',
     '😄',
     '😚',
