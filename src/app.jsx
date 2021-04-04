@@ -20,7 +20,7 @@ function App({ FileInput, authService, cardRepository }) {
             />
           </Route>
         </Switch>
-      </Bro>
+      </BrowserRouter>
     </div>
   );
 }
