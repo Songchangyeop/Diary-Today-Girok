@@ -15,7 +15,7 @@ const CardAddForm = memo(({ FileInput, onAdd, month, cards }) => {
   const [feelOpen, setfeelOpen] = useState(false);
   const [currentEmotion, setCurrentEmotion] = useState('😀');
   const [openDay, setOpenDay] = useState(false);
-  const [currentDay, setCurrentDay] = useState('1');
+  const [currentDay, setCurrentDay] = useState(1);
   const [openModal, setOpenModal] = useState(false);
   const getdate = new Date();
   const year = getdate.getFullYear();
@@ -30,6 +30,8 @@ const CardAddForm = memo(({ FileInput, onAdd, month, cards }) => {
   const onSubmit = (event) => {
     event.preventDefault();
     const cardsToArr = Object.entries(cards);
+    console.log(currentDay);
+    console.log(cardsToArr);
     for (let i = 0; i < cardsToArr.length; i++) {
       if (cardsToArr[i][1].date === currentDay) {
         setOpenModal(true);

@@ -13,7 +13,7 @@ const Dropdown = ({
   const dateRef = useRef();
 
   const setNewMonthOrselectDate = (event) => {
-    const showDate = `${dateRef.current.value}`;
+    const showDate = dateRef.current.value;
     if (value === 'month') {
       const newDate = `0${dateRef.current.value}`;
       updateMonth(newDate);
