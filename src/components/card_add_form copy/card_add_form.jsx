@@ -30,8 +30,6 @@ const CardAddForm = memo(({ FileInput, onAdd, month, cards }) => {
   const onSubmit = (event) => {
     event.preventDefault();
     const cardsToArr = Object.entries(cards);
-    console.log(currentDay);
-    console.log(cardsToArr);
     for (let i = 0; i < cardsToArr.length; i++) {
       if (cardsToArr[i][1].date === currentDay) {
         setOpenModal(true);

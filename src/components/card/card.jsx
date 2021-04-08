@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import styles from './card.module.css';
 
-const DEFAULT_IMAGE = 'images/default_logo.png';
+const DEFAULT_IMAGE = '/images/default_logo.png';
 const Card = memo(({ card, readDiary, openDiary }) => {
   const { date, fileURL } = card;
 

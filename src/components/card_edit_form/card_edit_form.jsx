@@ -24,7 +24,6 @@ const CardEditForm = ({
   const year = getdate.getFullYear();
   const day = new Date(year, month, 0).getDate();
   let currentEmotion = '';
-  console.log(card);
   const onFileChange = (file) => {
     updateCard({
       ...card,
