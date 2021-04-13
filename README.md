@@ -15,16 +15,36 @@
 
 ## Overview
 
-- ### 사용된 언어 및 프레임 워크 : react, css/PostCss/Firebase
+<br>
+<br>
+
+# 1. Stack
+
+<br>
+
+```
+React, React-router-dom, Firebase, Cloudinary
+```
+
+<br>
+
+---
 
 <br>
 <br>
 
-# 🔨 1. 기능
+# 2. 📁 컴포넌트 구조
+
+<p align="center"><img src="public/images/capture/컴포넌트.PNG"  width="430" height="500"></p>
+
+<br>
+<br>
+
+# 3. 🔨 기능
 
 <br>
 
-- ## 📝 일기추가
+## 3 - 1 📝 일기추가
 
 <br>
 
@@ -47,7 +67,7 @@ const createCard = (card) => {
 
 <br>
 
-Container 컴포넌트에서 일기를 생성하는 함수를 일기를 추가하는 Form 컴포넌트에 props로 전달하게됩니다
+Maker 컴포넌트에서 일기를 생성하는 함수를 일기를 추가하는 Form 컴포넌트에 props로 전달하게됩니다
 
 <br>
 
@@ -71,7 +91,7 @@ setFile({
 onAdd(card); // createCard 함수
 ```
 
-일기를 추가하는 컴포넌트인 AddForm에 일기가 Submit 될 때 마다 card 객체를 생성하여 Container 컴포넌트의 createCard 함수에 매개변수로 넘겨줍니다
+일기를 추가하는 컴포넌트인 AddForm에 일기가 Submit 될 때 마다 card 객체를 생성하여 Maker 컴포넌트의 createCard 함수에 매개변수로 넘겨줍니다
 
 <br>
 
@@ -100,7 +120,7 @@ for (let i = 0; i < cardsToArr.length; i++) {
 
 <br>
 
-- ## 📝 일기편집
+## 3 - 2 📝 일기편집
 
 <br>
 
@@ -130,11 +150,11 @@ const createCard = (card) => {
 };
 ```
 
-updateCard( ) : Container 컴포넌트에서 일기의 날짜가 Update 되면 기존의 일기를 Delete하고 새롭게 업데이트된 일기를 추가합니다
+updateCard( ) : Maker 컴포넌트에서 일기의 날짜가 Update 되면 기존의 일기를 Delete하고 새롭게 업데이트된 일기를 추가합니다
 
 <br>
 
-createCard( ) : Container 컴포넌트에서 일기의 Text가 Update 되면 업데이트된 일기를 추가합니다 <br>
+createCard( ) : Maker 컴포넌트에서 일기의 Text가 Update 되면 업데이트된 일기를 추가합니다 <br>
 
 <br>
 
@@ -150,14 +170,14 @@ const onChange = (event, date, newId, beforeId) => {
   let currentId = `${year}${month}${value}`;
   date
     ? updateDay({
-        // Container 컴포넌트의 updateCard함수
+        // Maker 컴포넌트의 updateCard함수
         ...card,
         [date]: value,
         [newId]: currentId,
         [beforeId]: card.id,
       })
     : updateCard({
-        //  Container 컴포넌트의 createCard함수
+        //  Maker 컴포넌트의 createCard함수
         ...card,
         [event.target.name]: value,
       });
@@ -229,7 +249,80 @@ allowUpdate 함수가 실행되면 onChange 함수를 호출하여 일기를 수
 
 <br>
 
-- ## 🧰 Dropdown
+## 3 - 3 😄 오늘의 Emotion 선택
+
+<p align="center"><img src="public/images/capture/이모지.PNG"  width="350" height="200"></p>
+
+<br>
+
+오늘의 감정을 이모지를 선택하여 나타낼 수 있습니다
+<br>
+
+```js
+const Feel = ({ changeEmotion, showFeelComponent }) => {
+  const [emotions] = useState([
+    '😀',
+    '😄',
+    '😚',
+    '😆',
+    '🤣',
+    '😅',
+    '😊',
+    '🥰',
+    '😨',
+    '😜',
+    '🤔',
+    '😒',
+    '😭',
+    '🤨',
+    '🥱',
+    '😔',
+    '🤮',
+    '🤯',
+    '👿',
+  ]);
+
+  return (
+    <div className={styles.container}>
+      {emotions.map((emotion) => (
+        <Emotion
+          emotion={emotion}
+          changeEmotion={changeEmotion}
+          showFeelComponent={showFeelComponent}
+        ></Emotion>
+      ))}
+    </div>
+  );
+};
+```
+
+일기추가 상자에서 이모지를 클릭하면 Feel 컴포넌트가 활성화되어 map( ) 메서드로 이모지의 리스트를 보여주는 Emotion 컴포넌트를 보여줍니다
+
+<br>
+
+```js
+const Emotion = ({ emotion, changeEmotion, showFeelComponent }) => {
+  const handleEmotion = (event) => {
+    const value = event.currentTarget.textContent;
+    changeEmotion(value); //  클릭한 이모지를 보여주기위해 changeEmotion 함수를 호출
+    showFeelComponent(false); // 이모지를 선택했다면 Feel 컴포넌트를 닫음
+  };
+
+  return (
+    <h2 className={styles.emotion} onClick={handleEmotion}>
+      {emotion}
+    </h2>
+  );
+};
+```
+
+Feel 컴포넌트에서 각 이모지들을 map으로 보여주고 사용자가 이모지를 선택하면 선택된 이모지를 등록하여 일기를 추가할때 객체에 추가됩니다
+
+---
+
+<br>
+
+## 3 - 4 🧰 Dropdown
 
 <br>
 
@@ -343,7 +436,7 @@ Dropdown 컴포넌트이며 조건문으로 각 컴포넌트를 구분하기 위
 
 ---
 
-- ## 🔥 Firebase
+## 3 - 5 🔥 Firebase
 
 <br>
 
@@ -576,7 +669,7 @@ Maker 컴포넌트에서 각 컴포넌트에서 수정, 생성, 삭제를 수행
 
 <br>
 
-## 📖 일기 보기
+## 3 - 6 📖 일기 보기
 
 <p align="center"><img src="public/images/capture/일기.PNG"  width="350" height="300"></p>
 
@@ -588,10 +681,12 @@ Maker 컴포넌트에서 각 컴포넌트에서 수정, 생성, 삭제를 수행
 
 ```js
 const readDiary = (selectCard) => {
+  // 읽고자 하는 일기를 State에 등록
   setReadCard(selectCard);
 };
 
 const openDiary = (value) => {
+  // 일기를 클릭하면 컴포넌트 Open
   if (value === 'open') {
     setDiaryOpen(true);
   } else {
@@ -599,3 +694,38 @@ const openDiary = (value) => {
   }
 };
 ```
+
+Maker 컴포넌트에서 선택된 일기를 등록하는 State와 일기 컴포넌트를 보여주는 State를 등록하여 함수를통해 Props로 넘겨줍니다
+
+```js
+const Diary = ({ readCard, openDiary }) => {
+  const { date, fileURL, message, emotion } = readCard;
+  const url = fileURL || DEFAULT_IMAGE;
+
+  const closeDiary = (event) => {
+    // 일기의 close 버튼을 클릭하면 일기가 닫힘
+    openDiary(event.target.value);
+  };
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.emotion}>
+        <span>{emotion}</span>
+      </div>
+      <h2 className={styles.date}>{date} th</h2>
+      <button
+        className={styles.closeBtn}
+        type="button"
+        value="close"
+        onClick={closeDiary}
+      >
+        닫기
+      </button>
+      <img className={styles.img} src={url} alt="feel" />
+      <span className={styles.message}>{message}</span>
+    </div>
+  );
+};
+```
+
+readCard 라는 State를 받아 어떤 일기를 보여줄 것인지 인식하고 사용자에게 일기를 보여줍니다

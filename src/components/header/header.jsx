@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import styles from './header.module.css';
 
-const Header = memo(({ onLogout, authService }) => {
+const Header = memo(({ onLogout }) => {
   const reload = () => {
     window.location.reload();
   };
