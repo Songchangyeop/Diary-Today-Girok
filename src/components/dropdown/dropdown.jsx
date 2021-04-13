@@ -15,7 +15,7 @@ const Dropdown = ({
   const setNewMonthOrselectDate = (event) => {
     const showDate = dateRef.current.value;
     if (value === 'month') {
-      const newDate = `0${dateRef.current.value}`;
+      const newDate = `0${showDate}`;
       updateMonth(newDate);
       showMonthList();
       changeCurrentMonth(showDate);

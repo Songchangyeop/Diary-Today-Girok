@@ -7,7 +7,7 @@ import Maker from './components/maker/maker';
 function App({ FileInput, authService, cardRepository }) {
   return (
     <div className={styles.app}>
-      <HashRouter basename="/Diary--Today-Girok">
+      <HashRouter>
         <Switch>
           <Route exact path="/">
             <Login authService={authService} />

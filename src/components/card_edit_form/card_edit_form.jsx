@@ -73,7 +73,7 @@ const CardEditForm = ({
     }
   };
 
-  const showModal = (event, name, newId, beforeId) => {
+  const showModal = (event, date, newId, beforeId) => {
     setCurrentEvent(event);
     let value = event.target.value;
     let currentId = `${year}${month}${value}`;
@@ -86,7 +86,7 @@ const CardEditForm = ({
         return;
       }
     }
-    onChange(event, name, newId, beforeId);
+    onChange(event, date, newId, beforeId);
   };
 
   const closeModal = () => {
