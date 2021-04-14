@@ -15,6 +15,43 @@
 
 ## Overview
 
+[1. Stack](#stack)
+<br>
+
+[2. 컴포넌트 구조](#컴포넌트-구조)
+<br>
+
+[3. 기능](#기능)
+<br>
+
+[3-1. 일기추가](#일기추가)<br>
+[일기의 중복생성 경고](#일기의-중복생성-경고)
+<br>
+
+[3-2. 일기편집](#일기편집)<br>
+[수정을 원하는 날짜의 일기가 이미 존재할 경우 경고](#수정을-원하는-날짜의-일기가-이미-존재할-경우-경고)
+<br>
+
+[3-3. 오늘의 Emotion 선택](#오늘의-emotion-선택)
+<br>
+
+[3-4. Dropdown](#dropdown)
+<br>
+
+[3-5. Cloudinary](#Cloudinary)
+<br>
+
+[3-6. Firebase](#firebase)
+<br>
+
+[3-7. 일기 보기](#일기-보기)
+<br>
+
+[4. 앞으로의 개선사항](#앞으로의-개선사항)
+<br>
+
+[5. 개발하면서 했던 고민](#개발하면서-했던-고민)
+<br>
 <br>
 <br>
 
@@ -27,9 +64,6 @@ React, React-router-dom, Firebase, Cloudinary
 ```
 
 <br>
-
----
-
 <br>
 <br>
 
@@ -436,7 +470,105 @@ Dropdown 컴포넌트이며 조건문으로 각 컴포넌트를 구분하기 위
 
 ---
 
-## 3 - 5 🔥 Firebase
+## 3 - 5 📷 Cloudinary
+
+<br>
+
+Cloudinary를 이용하여 이미지 파일을 업로드합니다
+
+<br>
+
+```js
+class ImageUploader {
+  async upload(file) {
+    const data = new FormData();
+    data.append('file', file);
+    data.append('upload_preset', 'oxdsrfek');
+    const result = await fetch(
+      'https://api.cloudinary.com/v1_1/divncmfka/image/upload',
+      {
+        method: 'POST',
+        body: data,
+      }
+    );
+    return await result.json();
+  }
+}
+
+export default ImageUploader;
+```
+
+ImageUploader 라는 클래스를 만들어 Cloudinary의 이미지를 업로드하는 api를 사용할 수 있게 합니다
+
+<br>
+
+```js
+const onFileChange = (file) => {
+  setFile({
+    fileName: file.name,
+    fileURL: file.url,
+  });
+};
+```
+
+CardAddForm 컴포넌트와 CardEditForm 컴포넌트에서 File 이라는 State를 생성하고 사용자가 이미지를 업로드하면 File State에 이미지의 이름과 url을 받아서 일기 객체에 등록합니다
+
+<br>
+
+```js
+const ImageFileInput = memo(({ imageUploader, name, onFileChange }) => {
+  const [loading, setLoading] = useState(false);
+
+  const inputRef = useRef();
+
+  const onbuttonCLick = (event) => {
+    event.preventDefault();
+    inputRef.current.click();
+  };
+
+  const onChange = async (event) => {
+    setLoading(true);
+    const uploaded = await imageUploader.upload(event.target.files[0]);
+    setLoading(false); // Image가 업로드 됐으면 State 변경
+    onFileChange({
+      // Image의 이름과 url을 등록하여 onFileChange 호출
+      name: uploaded.original_filename,
+      url: uploaded.url,
+    });
+  };
+  return (
+    <div className={styles.container}>
+      <input
+        ref={inputRef}
+        className={styles.input}
+        type="file"
+        accept="image/*"
+        name="file"
+        onChange={onChange}
+      />
+      {!loading && (
+        <button
+          className={`${styles.button} ${name ? styles.pink : styles.grey}`}
+          onClick={onbuttonCLick}
+        >
+          {name || 'No file'}
+        </button>
+      )}
+      {loading && <div className={styles.loading}></div>} 로딩이 완료되지
+      않았다면 로딩스피너가 보여집니다
+    </div>
+  );
+});
+export default ImageFileInput;
+```
+
+<br>
+
+CardAddForm 에서 props로 받아온 onFileChange 함수에 업로드된 이미지의 name과 url을 보내서 이미지를 사용자에게 보여줍니다
+
+---
+
+## 3 - 6 🔥 Firebase
 
 <br>
 
@@ -669,7 +801,7 @@ Maker 컴포넌트에서 각 컴포넌트에서 수정, 생성, 삭제를 수행
 
 <br>
 
-## 3 - 6 📖 일기 보기
+## 3 - 7 📖 일기 보기
 
 <p align="center"><img src="public/images/capture/일기.PNG"  width="350" height="300"></p>
 
@@ -729,3 +861,47 @@ const Diary = ({ readCard, openDiary }) => {
 ```
 
 readCard 라는 State를 받아 어떤 일기를 보여줄 것인지 인식하고 사용자에게 일기를 보여줍니다
+
+<br>
+<br>
+<br>
+
+# 4. 💡 앞으로의 개선사항
+
+- ## 개선 할 것들
+
+  - ### 일기를 삭제할 때 삭제 여부를 묻는 창이 있으면 좋겠다는 사용자의 의견을 반영하여 Delete 버튼을 누르면 삭제 여부를 물어보는 Modal을 추가 할 예정입니다
+
+  <br>
+
+  - ### 일기 목록의 일기에 기분 이모지가 보였으면 좋겠다는 사용자의 의견을 반영하여 일기에 이모지가 보이도록 업데이트 예정입니다
+
+  <br>
+
+  - ### 페이스북 간편로그인이 안 된다는 사용자의 불만을 반영하여 빠른시일 내에 페이스북 간편 로그인 오류를 해결 할 예정입니다
+
+  <br>
+
+  - ### 모바일에서 사용자에게 보여지는 화면의 CSS가 문제가 있다고 판단하여 빠른시일 내에 모바일에서도 문제없이 사용 가능하도록 업데이트 예정입니다
+
+  <br>
+
+  - ### 사용자들이 이미지 업로드의 존재 여부 또는 사용 이유를 잘 모르는 것 같아 사용방법에 대한 공지창을 제공할 것 입니다
+
+- ## 개선 한 것들
+
+  -
+
+  <br>
+
+  -
+
+<br>
+<br>
+
+# 5. 🔎 개발하면서 했던 고민
+
+<br>
+컴포넌트의 재사용성 ...<br>
+... <br>
+...
