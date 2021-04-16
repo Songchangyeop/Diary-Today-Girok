@@ -15,47 +15,55 @@
 
 ## Overview
 
-[1. Stack](#1.-Stack)
-<br>
+- [1. 개발 스택](#1.-개발-스택)
+  <br>
 
-[2. 컴포넌트 구조](#2.-📁-컴포넌트-구조)
-<br>
+- [2. 컴포넌트 구조](#2.-컴포넌트-구조)
+  <br>
 
-[3. 기능](#3.-🔨-기능)
-<br>
+- [3. 기능](#3.-기능)
+  <br>
 
-[3-1. 일기추가](#3---1-📝-일기추가)<br>
-[일기의 중복생성 경고](#❗-일기의-중복생성-경고)
-<br>
+  - [3-1. 일기추가](#3---1-일기추가)<br>
 
-[3-2. 일기편집](#3---2-📝-일기편집)<br>
-[수정을 원하는 날짜의 일기가 이미 존재할 경우 경고](#❗-수정을-원하는-날짜의-일기가-이미-존재할-경우-경고)
-<br>
+    - [일기의 중복생성 경고](#일기의-중복생성-경고)
+      <br>
 
-[3-3. 오늘의 Emotion 선택](#3---3-😄-오늘의-emotion-선택)
-<br>
+  - [3-2. 일기편집](#3---2-일기편집)<br>
 
-[3-4. Dropdown](#3---4-🧰-dropdown)
-<br>
+    - [수정을 원하는 날짜의 일기가 이미 존재할 경우 경고](#수정을-원하는-날짜의-일기가-이미-존재할-경우-경고)
+      <br>
 
-[3-5. Cloudinary](#3---5-📷-Cloudinary)
-<br>
+  - [3-3. 오늘의 Emotion 선택](#3---3-오늘의-emotion-선택)
+    <br>
 
-[3-6. Firebase](#3---6-🔥-Firebase)
-<br>
+  - [3-4. Dropdown](#3---4-dropdown)
+    <br>
 
-[3-7. 일기 보기](#3---7-📖-일기-보기)
-<br>
+  - [3-5. Cloudinary](#3---5-cloudinary)
+    <br>
 
-[4. 앞으로의 개선사항](#4.-💡-앞으로의-개선사항)
-<br>
+  - [3-6. Firebase](#3---6-firebase)
+    <br>
 
-[5. 개발하면서 했던 고민](#5.-🔎-개발하면서-했던-고민)
-<br>
-<br>
-<br>
+    - [Firebase 로그인 & 로그아웃](#firebase-로그인-&-로그아웃)
+      <br>
 
-# 1. Stack
+    - [Firebase Datebase](#firebase-datebase)
+      <br>
+
+  - [3-7. 일기 보기](#3---7-일기-보기)
+    <br>
+
+- [4. 앞으로의 개선사항](#4.-앞으로의-개선사항)
+  <br>
+
+- [5. 개발하면서 했던 고민](#5.-개발하면서-했던-고민)
+  <br>
+  <br>
+  <br>
+
+# 1. 개발 스택
 
 <br>
 
@@ -67,7 +75,7 @@ React, React-router-dom, Firebase, Cloudinary
 <br>
 <br>
 
-# 2. 📁 컴포넌트 구조
+# 2. 📁컴포넌트 구조
 
 <p align="center"><img src="public/images/capture/컴포넌트.PNG"  width="430" height="500"></p>
 
@@ -78,7 +86,7 @@ React, React-router-dom, Firebase, Cloudinary
 
 <br>
 
-## 3 - 1 📝 일기추가
+## 3 - 1 📝일기추가
 
 <br>
 
@@ -129,7 +137,7 @@ onAdd(card); // createCard 함수
 
 <br>
 
-### ❗ 일기의 중복생성 경고
+### ❗일기의 중복생성 경고
 
 <br>
 
@@ -154,7 +162,7 @@ for (let i = 0; i < cardsToArr.length; i++) {
 
 <br>
 
-## 3 - 2 📝 일기편집
+## 3 - 2 📝일기편집
 
 <br>
 
@@ -222,7 +230,7 @@ const onChange = (event, date, newId, beforeId) => {
 
 <br>
 
-### ❗ 수정을 원하는 날짜의 일기가 이미 존재할 경우 경고
+### ❗수정을 원하는 날짜의 일기가 이미 존재할 경우 경고
 
 <br>
 
@@ -283,7 +291,7 @@ allowUpdate 함수가 실행되면 onChange 함수를 호출하여 일기를 수
 
 <br>
 
-## 3 - 3 😄 오늘의 Emotion 선택
+## 3 - 3 😄오늘의 Emotion 선택
 
 <p align="center"><img src="public/images/capture/이모지.PNG"  width="350" height="200"></p>
 
@@ -356,7 +364,7 @@ Feel 컴포넌트에서 각 이모지들을 map으로 보여주고 사용자가 
 
 <br>
 
-## 3 - 4 🧰 Dropdown
+## 3 - 4 🧰Dropdown
 
 <br>
 
@@ -470,7 +478,7 @@ Dropdown 컴포넌트이며 조건문으로 각 컴포넌트를 구분하기 위
 
 ---
 
-## 3 - 5 📷 Cloudinary
+## 3 - 5 📷Cloudinary
 
 <br>
 
@@ -568,7 +576,7 @@ CardAddForm 에서 props로 받아온 onFileChange 함수에 업로드된 이미
 
 ---
 
-## 3 - 6 🔥 Firebase
+## 3 - 6 🔥Firebase
 
 <br>
 
@@ -603,7 +611,7 @@ firebase.js 파일을 생성하여 SDK를 불러온 뒤 Auth와 Database를 사�
 
 <br>
 
-### 🤚 Firebase 로그인 & 로그아웃
+### 🤚Firebase 로그인 & 로그아웃
 
 <br>
 
@@ -688,7 +696,7 @@ Login 컴포넌트이며 authService 클래스를 props로 받아 로그인, 로
 
 <br>
 
-### 🤚 Firebase Datebase
+### 🤚Firebase Datebase
 
 <br>
 
@@ -801,7 +809,7 @@ Maker 컴포넌트에서 각 컴포넌트에서 수정, 생성, 삭제를 수행
 
 <br>
 
-## 3 - 7 📖 일기 보기
+## 3 - 7 📖일기 보기
 
 <p align="center"><img src="public/images/capture/일기.PNG"  width="350" height="300"></p>
 
@@ -866,7 +874,7 @@ readCard 라는 State를 받아 어떤 일기를 보여줄 것인지 인식하�
 <br>
 <br>
 
-# 4. 💡 앞으로의 개선사항
+# 4. 💡앞으로의 개선사항
 
 - ## 개선 할 것들
 
@@ -899,7 +907,7 @@ readCard 라는 State를 받아 어떤 일기를 보여줄 것인지 인식하�
 <br>
 <br>
 
-# 5. 🔎 개발하면서 했던 고민
+# 5. 🔎개발하면서 했던 고민
 
 <br>
 컴포넌트의 재사용성 ...<br>
