@@ -82,7 +82,7 @@
   top: 1em;
   max-height: 7em;
   overflow-y: scroll;
-  z-index: 2;
+  z-index: 3;
 }
 
 .dropDown::-webkit-scrollbar {

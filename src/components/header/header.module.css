@@ -28,6 +28,7 @@
   cursor: pointer;
   z-index: 3;
   transition: all 200ms ease;
+  background-color: #efefef;
 }
 
 .logout:hover {
