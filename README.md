@@ -2,11 +2,11 @@
 
 <br>
 
-> 오늘하루를 기록하는 일기 웹 어플리케이션
-
-<br>
-
-### 데모링크 [https://songchangyeop.github.io/Diary--Today-Girok/#/Diary--Today-Girok/](https://songchangyeop.github.io/Diary--Today-Girok/#/Diary--Today-Girok/)
+> 오늘하루를 기록하는 일기 웹 어플리케이션입니다  
+> <br>
+> 오늘의 기분을 이모지로 표현하고 오늘 하루의 순간을 이미지로 첨부하여 일기를 작성해 보세요 !  
+> <br>
+> 페이지 링크: [https://songchangyeop.github.io/Diary--Today-Girok/#/Diary--Today-Girok/](https://songchangyeop.github.io/Diary--Today-Girok/#/Diary--Today-Girok/)
 
 <br>
 <br>
@@ -15,55 +15,27 @@
 
 ## Overview
 
-- [1. 개발 스택](#1.-개발-스택)
-  <br>
-
-- [2. 컴포넌트 구조](#2.-컴포넌트-구조)
-  <br>
-
-- [3. 기능](#3.-기능)
-  <br>
-
-  - [3-1. 일기추가](#3---1-일기추가)<br>
-
+- [1. 개발 스택](#1-개발-스택)
+- [2. 컴포넌트 구조](#2-컴포넌트-구조)
+- [3. 기능](#3-기능)
+  - [3-1 일기추가](#3---1-일기추가)
     - [일기의 중복생성 경고](#일기의-중복생성-경고)
-      <br>
-
-  - [3-2. 일기편집](#3---2-일기편집)<br>
-
+  - [3-2 일기편집](#3---2-일기편집)
     - [수정을 원하는 날짜의 일기가 이미 존재할 경우 경고](#수정을-원하는-날짜의-일기가-이미-존재할-경우-경고)
-      <br>
-
-  - [3-3. 오늘의 Emotion 선택](#3---3-오늘의-emotion-선택)
-    <br>
-
-  - [3-4. Dropdown](#3---4-dropdown)
-    <br>
-
-  - [3-5. Cloudinary](#3---5-cloudinary)
-    <br>
-
-  - [3-6. Firebase](#3---6-firebase)
-    <br>
-
+  - [3-3 오늘의 Emotion 선택](#3---3-오늘의-emotion-선택)
+  - [3-4 Dropdown](#3---4-dropdown)
+  - [3-5 Cloudinary](#3---5-cloudinary)
+  - [3-6 Firebase](#3---6-firebase)
     - [Firebase 로그인 & 로그아웃](#firebase-로그인-&-로그아웃)
-      <br>
-
     - [Firebase Datebase](#firebase-datebase)
-      <br>
+  - [3-7 일기 보기](#3---7-일기-보기)
+- [4. 앞으로의 개선사항](#4-앞으로의-개선사항)
+- [5. 개발하면서 했던 고민](#5-개발하면서-했던-고민)
 
-  - [3-7. 일기 보기](#3---7-일기-보기)
-    <br>
-
-- [4. 앞으로의 개선사항](#4.-앞으로의-개선사항)
-  <br>
-
-- [5. 개발하면서 했던 고민](#5.-개발하면서-했던-고민)
-  <br>
   <br>
   <br>
 
-# 1. 개발 스택
+# 1. ✔️개발 스택
 
 <br>
 
@@ -82,7 +54,7 @@ React, React-router-dom, Firebase, Cloudinary
 <br>
 <br>
 
-# 3. 🔨 기능
+# 3. 🔨기능
 
 <br>
 
@@ -94,6 +66,12 @@ React, React-router-dom, Firebase, Cloudinary
 
 <br>
 <br>
+
+Maker 컴포넌트에서 일기를 생성하는 함수를 일기를 추가하는 Form 컴포넌트에 props로 전달하게됩니다
+
+<details>
+<summary fontsize="bold">코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const createCard = (card) => {
@@ -107,11 +85,18 @@ const createCard = (card) => {
 };
 ```
 
+</div>
+</details>
+
 <br>
 
-Maker 컴포넌트에서 일기를 생성하는 함수를 일기를 추가하는 Form 컴포넌트에 props로 전달하게됩니다
-
 <br>
+
+일기를 추가하는 컴포넌트인 AddForm에 일기가 Submit 될 때 마다 card 객체를 생성하여 Maker 컴포넌트의 createCard 함수에 매개변수로 넘겨줍니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const card = {
@@ -133,7 +118,8 @@ setFile({
 onAdd(card); // createCard 함수
 ```
 
-일기를 추가하는 컴포넌트인 AddForm에 일기가 Submit 될 때 마다 card 객체를 생성하여 Maker 컴포넌트의 createCard 함수에 매개변수로 넘겨줍니다
+</div>
+</details>
 
 <br>
 
@@ -142,6 +128,12 @@ onAdd(card); // createCard 함수
 <br>
 
 <p align="center"><img src="public/images/capture/중복일기.PNG"  width="300" height="250"></p>
+
+일기를 생성할 때 생성하고싶은 날짜의 일기가 이미 존재한다면 경고 모달을 보여줍니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const cardsToArr = Object.entries(cards);
@@ -154,7 +146,8 @@ for (let i = 0; i < cardsToArr.length; i++) {
 }
 ```
 
-일기를 생성할 때 생성하고싶은 날짜의 일기가 이미 존재한다면 경고 모달을 보여줍니다
+</div>
+</details>
 
 <br>
 
@@ -165,6 +158,13 @@ for (let i = 0; i < cardsToArr.length; i++) {
 ## 3 - 2 📝일기편집
 
 <br>
+
+updateCard( ) : Maker 컴포넌트에서 일기의 날짜가 Update 되면 기존의 일기를 Delete하고 새롭게 업데이트된 일기를 추가합니다  
+createCard( ) : Maker 컴포넌트에서 일기의 Text가 Update 되면 업데이트된 일기를 추가합니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const updateCard = (card) => {
@@ -192,13 +192,17 @@ const createCard = (card) => {
 };
 ```
 
-updateCard( ) : Maker 컴포넌트에서 일기의 날짜가 Update 되면 기존의 일기를 Delete하고 새롭게 업데이트된 일기를 추가합니다
+</div>
+</details>
 
 <br>
-
-createCard( ) : Maker 컴포넌트에서 일기의 Text가 Update 되면 업데이트된 일기를 추가합니다 <br>
-
 <br>
+
+일기를 편집하는 컴포넌트인 EditForm에 일기가 Update 될 때 마다 onChange 함수를 실행하여 날짜가 업데이트 된 경우에는 UpdateDay 함수를 호출하고 Text를 업데이트한 경우에는 updateCard 함수를 호출합니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const onChange = (event, date, newId, beforeId) => {
@@ -226,7 +230,8 @@ const onChange = (event, date, newId, beforeId) => {
 };
 ```
 
-일기를 편집하는 컴포넌트인 EditForm에 일기가 Update 될 때 마다 onChange 함수를 실행하여 날짜가 업데이트 된 경우에는 UpdateDay 함수를 호출하고 Text를 업데이트한 경우에는 updateCard 함수를 호출합니다
+</div>
+</details>
 
 <br>
 
@@ -237,6 +242,12 @@ const onChange = (event, date, newId, beforeId) => {
 <p align="center"><img src="public/images/capture/일기변경.PNG"  width="350" height="350"></p>
 
 <br>
+
+Dropdown에서 선택 된 날짜를 for loop 를 이용해 같은 Id의 일기가 존재하면 경고 Modal을 보여주고 존재하지 않으면 바로 onChange 함수가 호출 되도록 합니다.
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const showModal = (event, date, newId, beforeId) => {
@@ -257,9 +268,17 @@ const showModal = (event, date, newId, beforeId) => {
 };
 ```
 
-Dropdown에서 선택 된 날짜를 for loop 를 이용해 같은 Id의 일기가 존재하면 경고 Modal을 보여주고 존재하지 않으면 바로 onChange 함수가 호출 되도록 합니다.
+</div>
+</details>
 
 <br>
+<br>
+
+Modal 컴포넌트에서 '예' 버튼을 클릭하면 props로 받아온 allowUpdate 함수를 실행합니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const Modal = ({
@@ -274,9 +293,17 @@ const Modal = ({
   </button>
 ```
 
-Modal 컴포넌트에서 '예' 버튼을 클릭하면 props로 받아온 allowUpdate 함수를 실행합니다
+</div>
+</details>
 
 <br>
+<br>
+
+allowUpdate 함수가 실행되면 onChange 함수를 호출하여 일기를 수정하고, OpenModal을 false로 바꾸어 Modal이 보이지 않도록 합니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const allowUpdate = () => {
@@ -285,7 +312,8 @@ const allowUpdate = () => {
 };
 ```
 
-allowUpdate 함수가 실행되면 onChange 함수를 호출하여 일기를 수정하고, OpenModal을 false로 바꾸어 Modal이 보이지 않도록 합니다
+</div>
+</details>
 
 ---
 
@@ -299,6 +327,12 @@ allowUpdate 함수가 실행되면 onChange 함수를 호출하여 일기를 수
 
 오늘의 감정을 이모지를 선택하여 나타낼 수 있습니다
 <br>
+
+일기추가 상자에서 이모지를 클릭하면 Feel 컴포넌트가 활성화되어 map( ) 메서드로 이모지의 리스트를 보여주는 Emotion 컴포넌트를 보여줍니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const Feel = ({ changeEmotion, showFeelComponent }) => {
@@ -338,9 +372,17 @@ const Feel = ({ changeEmotion, showFeelComponent }) => {
 };
 ```
 
-일기추가 상자에서 이모지를 클릭하면 Feel 컴포넌트가 활성화되어 map( ) 메서드로 이모지의 리스트를 보여주는 Emotion 컴포넌트를 보여줍니다
+</div>
+</details>
 
 <br>
+<br>
+
+Feel 컴포넌트에서 각 이모지들을 map으로 보여주고 사용자가 이모지를 선택하면 선택된 이모지를 등록하여 일기를 추가할때 객체에 추가됩니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const Emotion = ({ emotion, changeEmotion, showFeelComponent }) => {
@@ -358,7 +400,8 @@ const Emotion = ({ emotion, changeEmotion, showFeelComponent }) => {
 };
 ```
 
-Feel 컴포넌트에서 각 이모지들을 map으로 보여주고 사용자가 이모지를 선택하면 선택된 이모지를 등록하여 일기를 추가할때 객체에 추가됩니다
+</div>
+</details>
 
 ---
 
@@ -375,6 +418,12 @@ Feel 컴포넌트에서 각 이모지들을 map으로 보여주고 사용자가 
 월, 일을 선택할 때 보여지는 Dropdown 컴포넌트입니다.
 
 <br>
+
+일(date) Dropdown이며 < ul > 안에 해당 월의 일 수를 day변수에 받아서 일 수만큼 Dropdown 컴포넌트를 < li > 로 나타냅니다.
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 <div
@@ -397,9 +446,17 @@ Feel 컴포넌트에서 각 이모지들을 map으로 보여주고 사용자가 
 </div>
 ```
 
-일(date) Dropdown이며 < ul > 안에 해당 월의 일 수를 day변수에 받아서 일 수만큼 Dropdown 컴포넌트를 < li > 로 나타냅니다.
+</div>
+</details>
 
  <br>
+<br>
+
+월(month) Dropdown이며 < ul > 안에 해당 월의 수를 monthCount변수에 받아서 월 수만큼 Dropdown 컴포넌트를 < li > 로 나타냅니다.
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 <div
@@ -423,9 +480,17 @@ Feel 컴포넌트에서 각 이모지들을 map으로 보여주고 사용자가 
 </div>
 ```
 
-월(month) Dropdown이며 < ul > 안에 해당 월의 수를 monthCount변수에 받아서 월 수만큼 Dropdown 컴포넌트를 < li > 로 나타냅니다.
+</div>
+</details>
 
 <br>
+<br>
+
+Dropdown 컴포넌트이며 조건문으로 각 컴포넌트를 구분하기 위한 value에 맞게 함수를 호출합니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const Dropdown = ({
@@ -472,7 +537,8 @@ const Dropdown = ({
 };
 ```
 
-Dropdown 컴포넌트이며 조건문으로 각 컴포넌트를 구분하기 위한 value에 맞게 함수를 호출합니다
+</div>
+</details>
 
 <br>
 
@@ -485,6 +551,12 @@ Dropdown 컴포넌트이며 조건문으로 각 컴포넌트를 구분하기 위
 Cloudinary를 이용하여 이미지 파일을 업로드합니다
 
 <br>
+
+ImageUploader 라는 클래스를 만들어 Cloudinary의 이미지를 업로드하는 api를 사용할 수 있게 합니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 class ImageUploader {
@@ -506,9 +578,17 @@ class ImageUploader {
 export default ImageUploader;
 ```
 
-ImageUploader 라는 클래스를 만들어 Cloudinary의 이미지를 업로드하는 api를 사용할 수 있게 합니다
+</div>
+</details>
 
 <br>
+<br>
+
+CardAddForm 컴포넌트와 CardEditForm 컴포넌트에서 File 이라는 State를 생성하고 사용자가 이미지를 업로드하면 File State에 이미지의 이름과 url을 받아서 일기 객체에 등록합니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const onFileChange = (file) => {
@@ -519,9 +599,18 @@ const onFileChange = (file) => {
 };
 ```
 
-CardAddForm 컴포넌트와 CardEditForm 컴포넌트에서 File 이라는 State를 생성하고 사용자가 이미지를 업로드하면 File State에 이미지의 이름과 url을 받아서 일기 객체에 등록합니다
+</div>
+</details>
 
 <br>
+
+<br>
+
+CardAddForm 에서 props로 받아온 onFileChange 함수에 업로드된 이미지의 name과 url을 보내서 이미지를 사용자에게 보여줍니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const ImageFileInput = memo(({ imageUploader, name, onFileChange }) => {
@@ -570,9 +659,8 @@ const ImageFileInput = memo(({ imageUploader, name, onFileChange }) => {
 export default ImageFileInput;
 ```
 
-<br>
-
-CardAddForm 에서 props로 받아온 onFileChange 함수에 업로드된 이미지의 name과 url을 보내서 이미지를 사용자에게 보여줍니다
+</div>
+</details>
 
 ---
 
@@ -584,6 +672,12 @@ CardAddForm 에서 props로 받아온 onFileChange 함수에 업로드된 이미
 - Firebase를 이용하여 각 Month에 맞게 일기를 저장하여 사용자에게 나타냅니다
 
 <br>
+
+firebase.js 파일을 생성하여 SDK를 불러온 뒤 Auth와 Database를 사용하기위해 export를 해줍니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 import firebase from 'firebase/app';
@@ -607,7 +701,10 @@ export const githubProvider = new firebase.auth.GithubAuthProvider();
 export const facebookProvider = new firebase.auth.FacebookAuthProvider();
 ```
 
-firebase.js 파일을 생성하여 SDK를 불러온 뒤 Auth와 Database를 사용하기위해 export를 해줍니다 <br>
+</div>
+</details>
+
+<br>
 
 <br>
 
@@ -618,6 +715,12 @@ firebase.js 파일을 생성하여 SDK를 불러온 뒤 Auth와 Database를 사�
 <p align="center"><img src="public/images/capture/로그인화면.PNG"  width="500" height="300"></p>
 
 <br>
+
+AuthService 클래스에 로그인과 로그아웃을 위한 함수를 생성하고 각 요청에 맡는 서비스를 처리합니다.
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 import {
@@ -664,9 +767,17 @@ class AuthService {
 export default AuthService;
 ```
 
-AuthService 클래스에 로그인과 로그아웃을 위한 함수를 생성하고 각 요청에 맡는 서비스를 처리합니다.
+</div>
+</details>
 
 <br>
+<br>
+
+Login 컴포넌트이며 authService 클래스를 props로 받아 로그인, 로그아웃을 해줍니다. 또 onAuthChange 라는 관찰자를 등록하여 로그인 상태를 파악해 라우팅을 실행합니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const Login = ({ authService }) => {  // AuthService 클래스를 props로 받아옴
@@ -692,7 +803,8 @@ const Login = ({ authService }) => {  // AuthService 클래스를 props로 받�
   });
 ```
 
-Login 컴포넌트이며 authService 클래스를 props로 받아 로그인, 로그아웃을 해줍니다. 또 onAuthChange 라는 관찰자를 등록하여 로그인 상태를 파악해 라우팅을 실행합니다
+</div>
+</details>
 
 <br>
 
@@ -703,6 +815,12 @@ Login 컴포넌트이며 authService 클래스를 props로 받아 로그인, 로
 <p align="center"><img src="public/images/capture/월별일기.gif"  width="500" height="300"></p>
 
 <br>
+
+CardRepository 클래스에 불러오기, 저장, 삭제 기능을 수행하는 함수를 생성합니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 import { firebaseDatabase } from './firebase';
@@ -736,9 +854,17 @@ class CardRepository {
 export default CardRepository;
 ```
 
-CardRepository 클래스에 불러오기, 저장, 삭제 기능을 수행하는 함수를 생성합니다
+</div>
+</details>
 
 <br>
+<br>
+
+Maker 컴포넌트가 마운트 되면 CardRepository 클래스에 syncCards 함수를 호출하여 해당 월의 일기들을 불러와서 cards State에 저장합니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const [cards, setCards] = useState({}); // 각 월별 일기를 저장하는 State
@@ -760,7 +886,17 @@ useEffect(() => {
 }, [userId, cardRepository, month]);
 ```
 
-Maker 컴포넌트가 마운트 되면 CardRepository 클래스에 syncCards 함수를 호출하여 해당 월의 일기들을 불러와서 cards State에 저장합니다
+</div>
+</details>
+
+<br>
+<br>
+
+Maker 컴포넌트에서 각 컴포넌트에서 수정, 생성, 삭제를 수행하는 함수를 호출하여 Database를 수정합니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const updateCard = (card) => {
@@ -803,7 +939,8 @@ const deleteCard = (card) => {
 };
 ```
 
-Maker 컴포넌트에서 각 컴포넌트에서 수정, 생성, 삭제를 수행하는 함수를 호출하여 Database를 수정합니다
+</div>
+</details>
 
 ---
 
@@ -818,6 +955,12 @@ Maker 컴포넌트에서 각 컴포넌트에서 수정, 생성, 삭제를 수행
 일기 목록에 등록되어 있는 일기 중 원하는 날짜의 일기를 선택하면 일기를 볼 수 있습니다
 
 <br>
+
+Maker 컴포넌트에서 선택된 일기를 등록하는 State와 일기 컴포넌트를 보여주는 State를 등록하여 함수를통해 Props로 넘겨줍니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const readDiary = (selectCard) => {
@@ -835,7 +978,17 @@ const openDiary = (value) => {
 };
 ```
 
-Maker 컴포넌트에서 선택된 일기를 등록하는 State와 일기 컴포넌트를 보여주는 State를 등록하여 함수를통해 Props로 넘겨줍니다
+</div>
+</details>
+
+<br>
+<br>
+
+readCard 라는 State를 받아 어떤 일기를 보여줄 것인지 인식하고 사용자에게 일기를 보여줍니다
+
+<details>
+<summary >코드 보기 🔍</summary>
+<div markdown="1">
 
 ```js
 const Diary = ({ readCard, openDiary }) => {
@@ -868,7 +1021,8 @@ const Diary = ({ readCard, openDiary }) => {
 };
 ```
 
-readCard 라는 State를 받아 어떤 일기를 보여줄 것인지 인식하고 사용자에게 일기를 보여줍니다
+</div>
+</details>
 
 <br>
 <br>
@@ -876,25 +1030,23 @@ readCard 라는 State를 받아 어떤 일기를 보여줄 것인지 인식하�
 
 # 4. 💡앞으로의 개선사항
 
-- ## 개선 할 것들
+- ## 개선해야 할 것들
 
-  - ### 일기를 삭제할 때 삭제 여부를 묻는 창이 있으면 좋겠다는 사용자의 의견을 반영하여 Delete 버튼을 누르면 삭제 여부를 물어보는 Modal을 추가 할 예정입니다
-
-  <br>
-
-  - ### 일기 목록의 일기에 기분 이모지가 보였으면 좋겠다는 사용자의 의견을 반영하여 일기에 이모지가 보이도록 업데이트 예정입니다
+  - #### 일기를 삭제할 때 삭제 여부를 묻는 창이 있으면 좋겠다는 사용자의 의견을 반영하여 Delete 버튼을 누르면 삭제 여부를 물어보는 Modal을 추가 할 예정입니다
 
   <br>
 
-  - ### 페이스북 간편로그인이 안 된다는 사용자의 불만을 반영하여 빠른시일 내에 페이스북 간편 로그인 오류를 해결 할 예정입니다
+  - #### 일기 목록의 일기에 기분 이모지가 보였으면 좋겠다는 사용자의 의견을 반영하여 일기에 이모지가 보이도록 업데이트 예정입니다
 
   <br>
 
-  - ### 모바일에서 사용자에게 보여지는 화면의 CSS가 문제가 있다고 판단하여 빠른시일 내에 모바일에서도 문제없이 사용 가능하도록 업데이트 예정입니다
+  - #### 페이스북 간편 로그인이 안 된다는 사용자의 불만을 반영하여 페이스북 간편 로그인 오류를 해결할 예정입니다
 
   <br>
 
-  - ### 사용자들이 이미지 업로드의 존재 여부 또는 사용 이유를 잘 모르는 것 같아 사용방법에 대한 공지창을 제공할 것 입니다
+  - #### 모바일에서 사용자에게 보여지는 화면의 CSS가 문제가 있다고 판단하여 모바일에서도 문제없이 사용 가능하도록 업데이트 예정입니다
+
+  <br>
 
 - ## 개선 한 것들
 
@@ -910,6 +1062,11 @@ readCard 라는 State를 받아 어떤 일기를 보여줄 것인지 인식하�
 # 5. 🔎개발하면서 했던 고민
 
 <br>
-컴포넌트의 재사용성 ...<br>
-... <br>
-...
+
+- 컴포넌트의 재사용성을 최대한 활용하려고 고민했고 그 결과 일기의 추가 및 편집시에 하나의 컴포넌트로 Modal을 표현하였고 일기 Card, Dropdown의 일, 월 컴포넌트도 재사용성을 고려하여 만들어보려 노력하였습니다.
+
+- State 불변성을 지키기 위해 Spread Operator 를 활용하여 객체의 데이터를 복사한 후에 새로운 값을 넣어 return 해 줌으로써 immutable을 지키려 하였습니다.
+
+- 작성중 .....  
+  .....  
+  .....
