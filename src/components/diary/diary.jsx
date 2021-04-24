@@ -24,7 +24,7 @@ const Diary = ({ readCard, openDiary }) => {
       >
         닫기
       </button>
-      <img className={styles.img} src={url} alt="feel" />
+      <img className={styles.img} src={url} alt="Todayphoto" />
       <span className={styles.message}>{message}</span>
     </div>
   );

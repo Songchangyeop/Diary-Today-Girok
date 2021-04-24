@@ -27,8 +27,9 @@ const Feel = ({ changeEmotion, showFeelComponent }) => {
 
   return (
     <div className={styles.container}>
-      {emotions.map((emotion) => (
+      {emotions.map((emotion, index) => (
         <Emotion
+          key={index}
           emotion={emotion}
           changeEmotion={changeEmotion}
           showFeelComponent={showFeelComponent}

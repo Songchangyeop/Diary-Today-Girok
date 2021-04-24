@@ -65,7 +65,7 @@ const CardEditForm = ({
     deleteCard(card);
   };
 
-  const handleShowDayList = () => {
+  const showDayList = () => {
     if (openDay === true) {
       setOpenDay(false);
     } else {
@@ -137,14 +137,14 @@ const CardEditForm = ({
           <h1>오늘은</h1>
           <div
             className={`${styles.dateContainer} ${openDay && styles.clickDay}`}
-            onClick={handleShowDayList}
+            onClick={showDayList}
           >
             <ul className={styles.dropDown}>
               {openDay &&
                 [...Array(day)].map((num, index) => (
                   <Dropdown
                     key={index}
-                    handleShowDayList={handleShowDayList}
+                    showDayList={showDayList}
                     index={index}
                     value={'dayEdit'}
                     onChange={showModal}
