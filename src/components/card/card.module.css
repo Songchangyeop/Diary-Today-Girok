@@ -1,6 +1,7 @@
 @value makerShadow, makerBlack, makerWhite, makerLightGrey from '../../common/colors.css';
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,6 +51,13 @@
 
 .date {
   margin: 0;
+}
+
+.emotion {
+  font-size: 1.2em;
+  position: absolute;
+  top: 0;
+  left: 0.5em;
 }
 
 @media screen and (max-width: 550px) {

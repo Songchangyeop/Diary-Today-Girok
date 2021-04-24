@@ -12,7 +12,7 @@ const Dropdown = ({
 }) => {
   const dateRef = useRef();
 
-  const setNewMonthOrselectDate = (event) => {
+  const handleNewMonthOrselectDate = (event) => {
     const showDate = dateRef.current.value;
     if (value === 'month') {
       const newDate = `0${showDate}`;
@@ -33,7 +33,7 @@ const Dropdown = ({
       ref={dateRef}
       className={styles.monthList}
       value={String(index + 1)}
-      onClick={setNewMonthOrselectDate}
+      onClick={handleNewMonthOrselectDate}
     >
       {index + 1}
     </li>

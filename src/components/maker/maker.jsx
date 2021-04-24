@@ -33,8 +33,9 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
       },
       month
     );
+
     //useEffct에서 return은 언마운트 될 시에 실행
-    return () => stopSync(); // 불필요한 네트워크 사용을 최소화 하기위해  ref.off
+    return () => stopSync; // 불필요한 네트워크 사용을 최소화 하기위해  ref.off
   }, [userId, cardRepository, month]);
 
   useEffect(() => {

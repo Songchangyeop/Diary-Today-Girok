@@ -64,6 +64,7 @@ const Preview = ({
             openDiary={openDiary}
           />
         ))}
+
         {!editOpen && (
           <button
             className={styles.open}

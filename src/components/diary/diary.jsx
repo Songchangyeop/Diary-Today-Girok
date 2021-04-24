@@ -6,7 +6,7 @@ const Diary = ({ readCard, openDiary }) => {
   const { date, fileURL, message, emotion } = readCard;
   const url = fileURL || DEFAULT_IMAGE;
 
-  const closeDiary = (event) => {
+  const handleCloseDiary = (event) => {
     openDiary(event.target.value);
   };
 
@@ -20,7 +20,7 @@ const Diary = ({ readCard, openDiary }) => {
         className={styles.closeBtn}
         type="button"
         value="close"
-        onClick={closeDiary}
+        onClick={handleCloseDiary}
       >
         닫기
       </button>
