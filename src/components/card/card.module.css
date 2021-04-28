@@ -77,4 +77,11 @@
     padding-top: 0.3em;
     font-size: 1em;
   }
+
+  .emotion {
+    font-size: 0.7em;
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+  }
 }
