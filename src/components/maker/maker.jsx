@@ -48,64 +48,72 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
     });
   }, [authService, userId, history]);
 
-  const updateCard = (card) => {
-    setCards((cards) => {
-      const updated = { ...cards };
-      delete updated[card.beforeId];
-      return updated;
-    });
-    cardRepository.removeCard(userId, card, month, 'update');
+  const updateCard = useCallback(
+    (card) => {
+      setCards((cards) => {
+        const updated = { ...cards };
+        delete updated[card.beforeId];
+        return updated;
+      });
+      cardRepository.removeCard(userId, card, month, 'update');
 
-    setCards((cards) => {
-      const updated = { ...cards };
-      updated[card.id] = card;
-      return updated;
-    });
-    cardRepository.saveCard(userId, card, month);
-  };
+      setCards((cards) => {
+        const updated = { ...cards };
+        updated[card.id] = card;
+        return updated;
+      });
+      cardRepository.saveCard(userId, card, month);
+    },
+    [userId, month, cardRepository]
+  );
 
-  const createCard = (card) => {
-    setCards((cards) => {
-      const updated = { ...cards };
-      updated[card.id] = card;
-      return updated;
-    });
-    cardRepository.saveCard(userId, card, month);
-  };
+  const createCard = useCallback(
+    (card) => {
+      setCards((cards) => {
+        const updated = { ...cards };
+        updated[card.id] = card;
+        return updated;
+      });
+      cardRepository.saveCard(userId, card, month);
+    },
+    [userId, month, cardRepository]
+  );
 
-  const deleteCard = (card) => {
-    setCards((cards) => {
-      const updated = { ...cards };
-      delete updated[card.id];
-      return updated;
-    });
-    cardRepository.removeCard(userId, card, month);
-  };
+  const deleteCard = useCallback(
+    (card) => {
+      setCards((cards) => {
+        const updated = { ...cards };
+        delete updated[card.id];
+        return updated;
+      });
+      cardRepository.removeCard(userId, card, month);
+    },
+    [userId, month, cardRepository]
+  );
 
-  const editorOpen = (value) => {
+  const editorOpen = useCallback((value) => {
     if (value === 'write') {
       setEditOpen(true);
     } else {
       setEditOpen(false);
     }
-  };
+  }, []);
 
-  const updateMonth = (newMonth) => {
-    // console.log(newMonth);
+  const updateMonth = useCallback((newMonth) => {
     setMonth(newMonth);
-  };
+  }, []);
 
-  const readDiary = (selectCard) => {
+  const readDiary = useCallback((selectCard) => {
     setReadCard(selectCard);
-  };
+  }, []);
 
-  const openDiary = (value) => {
+  const openDiary = useCallback((value) => {
     if (value === 'open') {
       setDiaryOpen(true);
     } else {
       setDiaryOpen(false);
     }
-  };
+  }, []);
 
   return (
     <section className={styles.maker}>

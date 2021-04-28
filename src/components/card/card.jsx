@@ -14,7 +14,6 @@ const Card = memo(({ card, readDiary, openDiary }) => {
   };
 
   return (
-    // <li className={`${styles.card} ${getStyles(theme)}`}>
     <li className={styles.card} onClick={selectCard}>
       <div className={styles.emotion}>
         <span>{emotion}</span>
@@ -25,16 +24,4 @@ const Card = memo(({ card, readDiary, openDiary }) => {
   );
 });
 
-// function getStyles(theme) {
-//   switch (theme) {
-//     case 'dark':
-//       return styles.dark;
-//     case 'light':
-//       return styles.light;
-//     case 'colorful':
-//       return styles.colorful;
-//     default:
-//       throw new Error(`unknown theme: ${theme}`);
-//   }
-// }
 export default Card;

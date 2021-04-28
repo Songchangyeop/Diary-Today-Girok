@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState } from 'react';
+import React, { memo, useCallback, useRef, useState } from 'react';
 import Button from '../button/button';
 import Dropdown from '../dropdown/dropdown';
 import Feel from '../feel/feel';
@@ -20,70 +20,80 @@ const CardAddForm = memo(({ FileInput, onAdd, month, cards }) => {
   const getdate = new Date();
   const year = getdate.getFullYear();
   const day = new Date(year, month, 0).getDate();
-  const onFileChange = (file) => {
+
+  const onFileChange = useCallback((file) => {
     setFile({
       fileName: file.name,
       fileURL: file.url,
     });
-  };
+  }, []);
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    const cardsToArr = Object.entries(cards);
-    for (let i = 0; i < cardsToArr.length; i++) {
-      if (cardsToArr[i][1].date === currentDay) {
-        setOpenModal(true);
-        return;
+  const onSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+      const cardsToArr = Object.entries(cards);
+      for (let i = 0; i < cardsToArr.length; i++) {
+        if (cardsToArr[i][1].date === currentDay) {
+          setOpenModal(true);
+          return;
+        }
       }
-    }
-    let today = `${year}${month}${currentDay}`;
-    const card = {
-      id: today, //uuid
-      emotion: currentEmotion,
-      date: currentDay,
-      message: messageRef.current.value || '일기가 없습니다!',
-      fileName: file.fileName || '',
-      fileURL: file.fileURL || '',
-      beforeId: today,
-    };
-    formRef.current.reset();
-    setFile({
-      fileName: file.name,
-      fileURL: file.url,
-    });
-    onAdd(card);
-  };
+      let today = `${year}${month}${currentDay}`;
+      const card = {
+        id: today, //uuid
+        emotion: currentEmotion,
+        date: currentDay,
+        message: messageRef.current.value || '일기가 없습니다!',
+        fileName: file.fileName || '',
+        fileURL: file.fileURL || '',
+        beforeId: today,
+      };
+      formRef.current.reset();
+      onAdd(card);
+    },
+    [
+      cards,
+      currentDay,
+      currentEmotion,
+      file.fileName,
+      file.fileURL,
+      month,
+      onAdd,
+      year,
+    ]
+  );
 
-  const showDayList = () => {
+  const showDayList = useCallback(() => {
     if (openDay === true) {
       setOpenDay(false);
     } else {
       setOpenDay(true);
     }
-  };
-  const changeCurrentDay = (changeDay) => {
-    setCurrentDay(changeDay);
-  };
+  }, [openDay]);
 
-  const showModal = () => {
+  const changeCurrentDay = useCallback((changeDay) => {
+    setCurrentDay(changeDay);
+  }, []);
+
+  const showModal = useCallback(() => {
     setOpenModal(false);
-  };
+  }, []);
 
   const handleFeelComponent = () => {
     showFeelComponent('open');
   };
 
-  const showFeelComponent = (value) => {
+  const showFeelComponent = useCallback((value) => {
     if (value === 'open') {
       setfeelOpen(true);
     } else {
       setfeelOpen(false);
     }
-  };
+  }, []);
 
-  const changeEmotion = (newEmotion) => {
+  const changeEmotion = useCallback((newEmotion) => {
     setCurrentEmotion(newEmotion);
-  };
+  }, []);
 
   return (
     <>

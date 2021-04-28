@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import Emotion from '../emotion/emotion';
 import styles from './feel.module.css';
 
-const Feel = ({ changeEmotion, showFeelComponent }) => {
+const Feel = memo(({ changeEmotion, showFeelComponent }) => {
   const [emotions] = useState([
     '😀',
     '😄',
@@ -37,6 +37,6 @@ const Feel = ({ changeEmotion, showFeelComponent }) => {
       ))}
     </div>
   );
-};
+});
 
 export default Feel;

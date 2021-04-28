@@ -6,7 +6,7 @@
 > <br>
 > 오늘의 기분을 이모지로 표현하고 오늘 하루의 순간을 이미지로 첨부하여 일기를 작성해 보세요 !  
 > <br>
-> 페이지 링크: [https://songchangyeop.github.io/Diary--Today-Girok/#/Diary--Today-Girok/](https://songchangyeop.github.io/Diary--Today-Girok/#/Diary--Today-Girok/)
+> 페이지 링크: [https://songchangyeop.github.io/Diary--Today-Girok/#/maker](https://songchangyeop.github.io/Diary--Today-Girok/#/maker)
 
 <br>
 <br>
@@ -1041,6 +1041,10 @@ const Diary = ({ readCard, openDiary }) => {
   <br>
 
   - 모바일에서 사용자에게 보여지는 화면의 CSS가 문제가 있다고 판단하여 모바일에서도 문제없이 사용 가능하도록 업데이트 예정입니다
+
+  <br>
+
+- 로그인 한 이후에 오늘날짜의 일기를
 
   <br>
 

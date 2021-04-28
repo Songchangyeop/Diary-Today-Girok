@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './emotion.module.css';
 
-const Emotion = ({ emotion, changeEmotion, showFeelComponent }) => {
+const Emotion = memo(({ emotion, changeEmotion, showFeelComponent }) => {
   const handleEmotion = (event) => {
     const value = event.currentTarget.textContent;
     changeEmotion(value);
@@ -13,6 +13,6 @@ const Emotion = ({ emotion, changeEmotion, showFeelComponent }) => {
       {emotion}
     </h2>
   );
-};
+});
 
 export default Emotion;

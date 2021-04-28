@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Card from '../card/card';
 import Dropdown from '../dropdown/dropdown';
 import styles from './preview.module.css';
@@ -19,17 +19,17 @@ const Preview = ({
     editorOpen(e.target.value);
   };
 
-  const showMonthList = () => {
+  const showMonthList = useCallback(() => {
     if (openMonth === true) {
       setOpenMonth(false);
     } else {
       setOpenMonth(true);
     }
-  };
+  }, [openMonth]);
 
-  const changeCurrentMonth = (changeMonth) => {
+  const changeCurrentMonth = useCallback((changeMonth) => {
     setCurrentMonth(changeMonth);
-  };
+  }, []);
 
   return (
     <section className={styles.preview}>

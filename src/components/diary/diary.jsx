@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './diary.module.css';
 const DEFAULT_IMAGE = 'images/default_logo.png';
 
-const Diary = ({ readCard, openDiary }) => {
+const Diary = memo(({ readCard, openDiary }) => {
   const { date, fileURL, message, emotion } = readCard;
   const url = fileURL || DEFAULT_IMAGE;
 
@@ -28,6 +28,6 @@ const Diary = ({ readCard, openDiary }) => {
       <span className={styles.message}>{message}</span>
     </div>
   );
-};
+});
 
 export default Diary;
