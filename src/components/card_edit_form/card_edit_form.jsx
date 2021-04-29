@@ -48,12 +48,14 @@ const CardEditForm = memo(
         let currentId = `${year}${month}${value}`;
         date
           ? updateDay({
+              // 일기의 날짜수정을 변경할 때
               ...card,
               [date]: value,
               [newId]: currentId,
               [beforeId]: card.id,
             })
           : updateCard({
+              // 일기의 Text를 변경할 때
               ...card,
               [event.target.name]: value,
             });

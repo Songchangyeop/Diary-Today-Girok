@@ -12,10 +12,13 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
   const [cards, setCards] = useState({});
   const [userId, setUserId] = useState(historyState && historyState.id);
   const [editOpen, setEditOpen] = useState(false);
-  const [month, setMonth] = useState('01');
+  const date = new Date();
+  const thisMonth = date.getMonth() + 1;
+  const [month, setMonth] = useState(`${'0' + thisMonth}`);
   const [readCard, setReadCard] = useState();
   const [diaryOpen, setDiaryOpen] = useState(false);
   const history = useHistory();
+
   const onLogout = useCallback(() => {
     authService.logout();
   }, [authService]);

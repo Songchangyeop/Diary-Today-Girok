@@ -15,11 +15,12 @@ const CardAddForm = memo(({ FileInput, onAdd, month, cards }) => {
   const [feelOpen, setfeelOpen] = useState(false);
   const [currentEmotion, setCurrentEmotion] = useState('😀');
   const [openDay, setOpenDay] = useState(false);
-  const [currentDay, setCurrentDay] = useState(1);
   const [openModal, setOpenModal] = useState(false);
   const getdate = new Date();
   const year = getdate.getFullYear();
   const day = new Date(year, month, 0).getDate();
+  const thisDay = getdate.getDate();
+  const [currentDay, setCurrentDay] = useState(thisDay);
 
   const onFileChange = useCallback((file) => {
     setFile({

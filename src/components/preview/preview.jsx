@@ -12,7 +12,9 @@ const Preview = ({
   openDiary,
 }) => {
   const [openMonth, setOpenMonth] = useState(false);
-  const [currentMonth, setCurrentMonth] = useState('1');
+  const date = new Date();
+  const thisMonth = date.getMonth() + 1;
+  const [currentMonth, setCurrentMonth] = useState(thisMonth);
   const monthCount = 12;
 
   const btnClick = (e) => {
