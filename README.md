@@ -40,7 +40,7 @@
 <br>
 
 ```
-React, React-router-dom, Firebase, Cloudinary
+React, React-router-dom, CSS Module ,Firebase, Cloudinary
 ```
 
 <br>
