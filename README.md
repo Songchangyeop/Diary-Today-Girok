@@ -6,7 +6,7 @@
 > <br>
 > 오늘의 기분을 이모지로 표현하고 오늘 하루의 순간을 이미지로 첨부하여 일기를 작성해 보세요 !  
 > <br>
-> 페이지 링크: [https://songchangyeop.github.io/Diary--Today-Girok/#/maker](https://songchangyeop.github.io/Diary--Today-Girok/#/maker)
+> 페이지 링크: [https://songchangyeop.github.io/Diary-Today-Girok/](https://songchangyeop.github.io/Diary-Today-Girok/)
 
 <br>
 <br>
