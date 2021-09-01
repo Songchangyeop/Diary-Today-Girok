@@ -8,6 +8,7 @@
 		"@testing-library/user-event": "^12.1.10",
 		"cloudinary": "^1.25.0",
 		"cloudinary-react": "^1.7.0",
+		"env-cmd": "^10.1.0",
 		"firebase": "^8.2.9",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
@@ -18,7 +19,7 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"build": "react-scripts build",
+		"build": "env-cmd -f .env react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},

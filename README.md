@@ -6,13 +6,12 @@
 > <br>
 > 오늘의 기분을 이모지로 표현하고 오늘 하루의 순간을 이미지로 첨부하여 일기를 작성해 보세요 !  
 > <br>
-> 페이지 링크: [https://songchangyeop.github.io/Diary-Today-Girok/](https://songchangyeop.github.io/Diary-Today-Girok/)
+> 페이지 링크: [https://diary-girok.netlify.app/](https://diary-girok.netlify.app/)
 
 <br>
 <br>
 
 ---
-
 
 # 1. ✔️개발 스택
 
@@ -54,16 +53,16 @@ Maker 컴포넌트에서 일기를 생성하는 함수를 일기를 추가하는
 
 ```js
 const createCard = useCallback(
-  (card) => {
-    setCards((cards) => {
-      // 현재 일기리스트 객체를 가지고있는 State 수정
-      const updated = { ...cards };
-      updated[card.id] = card;
-      return updated;
-    });
-    cardRepository.saveCard(userId, card, month); // Firebase의 Database에 접근하는 클래스 내부의 saveCard 함수 호출
-  },
-  [userId, month, cardRepository]
+	(card) => {
+		setCards((cards) => {
+			// 현재 일기리스트 객체를 가지고있는 State 수정
+			const updated = { ...cards };
+			updated[card.id] = card;
+			return updated;
+		});
+		cardRepository.saveCard(userId, card, month); // Firebase의 Database에 접근하는 클래스 내부의 saveCard 함수 호출
+	},
+	[userId, month, cardRepository]
 );
 ```
 
@@ -82,14 +81,14 @@ const createCard = useCallback(
 
 ```js
 const card = {
-  //  일기객체 생성
-  id: today, //uuid
-  emotion: currentEmotion,
-  date: currentDay,
-  message: messageRef.current.value || '일기가 없습니다!',
-  fileName: file.fileName || '',
-  fileURL: file.fileURL || '',
-  beforeId: today,
+	//  일기객체 생성
+	id: today, //uuid
+	emotion: currentEmotion,
+	date: currentDay,
+	message: messageRef.current.value || '일기가 없습니다!',
+	fileName: file.fileName || '',
+	fileURL: file.fileURL || '',
+	beforeId: today,
 };
 formRef.current.reset();
 onAdd(card); // createCard 함수
@@ -115,11 +114,11 @@ onAdd(card); // createCard 함수
 ```js
 const cardsToArr = Object.entries(cards);
 for (let i = 0; i < cardsToArr.length; i++) {
-  //2차원 배열의 접근을 위한 for loop
-  if (cardsToArr[i][1].date === currentDay) {
-    setOpenModal(true); // date가 같은 일기가 card 배열에 존재할 경우 Modal Open
-    return;
-  }
+	//2차원 배열의 접근을 위한 for loop
+	if (cardsToArr[i][1].date === currentDay) {
+		setOpenModal(true); // date가 같은 일기가 card 배열에 존재할 경우 Modal Open
+		return;
+	}
 }
 ```
 
@@ -145,33 +144,33 @@ createCard( ) : Maker 컴포넌트에서 일기의 Text가 Update 되면 업데�
 
 ```js
 const updateCard = useCallback(
-  (card) => {
-    setCards((cards) => {
-      const updated = { ...cards };
-      delete updated[card.beforeId];
-      return updated;
-    });
-    cardRepository.removeCard(userId, card, month, 'update'); // Firebase의 Database에 접근하는 클래스 내부의 removeCard 함수 호출
-    setCards((cards) => {
-      const updated = { ...cards };
-      updated[card.id] = card;
-      return updated;
-    });
-    cardRepository.saveCard(userId, card, month); // Firebase의 Database에 접근하는 클래스 내부의 saveCard 함수 호출
-  },
-  [userId, month, cardRepository]
+	(card) => {
+		setCards((cards) => {
+			const updated = { ...cards };
+			delete updated[card.beforeId];
+			return updated;
+		});
+		cardRepository.removeCard(userId, card, month, 'update'); // Firebase의 Database에 접근하는 클래스 내부의 removeCard 함수 호출
+		setCards((cards) => {
+			const updated = { ...cards };
+			updated[card.id] = card;
+			return updated;
+		});
+		cardRepository.saveCard(userId, card, month); // Firebase의 Database에 접근하는 클래스 내부의 saveCard 함수 호출
+	},
+	[userId, month, cardRepository]
 );
 
 const createCard = useCallback(
-  (card) => {
-    setCards((cards) => {
-      const updated = { ...cards };
-      updated[card.id] = card;
-      return updated;
-    });
-    cardRepository.saveCard(userId, card, month); // Firebase의 Database에 접근하는 클래스 내부의 saveCard 함수 호출
-  },
-  [userId, month, cardRepository]
+	(card) => {
+		setCards((cards) => {
+			const updated = { ...cards };
+			updated[card.id] = card;
+			return updated;
+		});
+		cardRepository.saveCard(userId, card, month); // Firebase의 Database에 접근하는 클래스 내부의 saveCard 함수 호출
+	},
+	[userId, month, cardRepository]
 );
 ```
 
@@ -189,30 +188,30 @@ const createCard = useCallback(
 
 ```js
 const onChange = useCallback(
-  (event, date, newId, beforeId) => {
-    if (event.target.value === null) {
-      console.log(event.target);
-      return;
-    }
+	(event, date, newId, beforeId) => {
+		if (event.target.value === null) {
+			console.log(event.target);
+			return;
+		}
 
-    event.preventDefault();
-    let value = event.target.value;
-    let currentId = `${year}${month}${value}`;
-    date
-      ? updateDay({
-          // 일기의 날짜수정을 변경할 때
-          ...card,
-          [date]: value,
-          [newId]: currentId,
-          [beforeId]: card.id,
-        })
-      : updateCard({
-          // 일기의 Text를 변경할 때
-          ...card,
-          [event.target.name]: value,
-        });
-  },
-  [card, month, updateDay, updateCard, year]
+		event.preventDefault();
+		let value = event.target.value;
+		let currentId = `${year}${month}${value}`;
+		date
+			? updateDay({
+					// 일기의 날짜수정을 변경할 때
+					...card,
+					[date]: value,
+					[newId]: currentId,
+					[beforeId]: card.id,
+			  })
+			: updateCard({
+					// 일기의 Text를 변경할 때
+					...card,
+					[event.target.name]: value,
+			  });
+	},
+	[card, month, updateDay, updateCard, year]
 );
 ```
 
@@ -237,23 +236,23 @@ Dropdown에서 선택 된 날짜를 for loop 를 이용해 같은 Id의 일기�
 
 ```js
 const showModal = useCallback(
-  (event, date, newId, beforeId) => {
-    setCurrentEvent(event);
-    let value = event.target.value;
-    let currentId = `${year}${month}${value}`;
-    const cardsToArr = Object.entries(cards);
+	(event, date, newId, beforeId) => {
+		setCurrentEvent(event);
+		let value = event.target.value;
+		let currentId = `${year}${month}${value}`;
+		const cardsToArr = Object.entries(cards);
 
-    for (let i = 0; i < cardsToArr.length; i++) {
-      // 2차원 배열의 접근을 위한 for loop
-      if (cardsToArr[i][1].id === currentId) {
-        setSelectDay(value);
-        setOpenModal(true);
-        return;
-      }
-    }
-    onChange(event, date, newId, beforeId);
-  },
-  [cards, month, onChange, year]
+		for (let i = 0; i < cardsToArr.length; i++) {
+			// 2차원 배열의 접근을 위한 for loop
+			if (cardsToArr[i][1].id === currentId) {
+				setSelectDay(value);
+				setOpenModal(true);
+				return;
+			}
+		}
+		onChange(event, date, newId, beforeId);
+	},
+	[cards, month, onChange, year]
 );
 ```
 
@@ -297,8 +296,8 @@ allowUpdate 함수가 실행되면 onChange 함수를 호출하여 일기를 수
 
 ```js
 const allowUpdate = useCallback(() => {
-  onChange(currentEvent, 'date', 'id', 'beforeId');
-  setOpenModal(false);
+	onChange(currentEvent, 'date', 'id', 'beforeId');
+	setOpenModal(false);
 }, [currentEvent, onChange]);
 ```
 
@@ -326,40 +325,40 @@ const allowUpdate = useCallback(() => {
 
 ```js
 const Feel = memo(({ changeEmotion, showFeelComponent }) => {
-  const [emotions] = useState([
-    '😀',
-    '😄',
-    '😚',
-    '😆',
-    '🤣',
-    '😅',
-    '😊',
-    '🥰',
-    '😨',
-    '😜',
-    '🤔',
-    '😒',
-    '😭',
-    '🤨',
-    '🥱',
-    '😔',
-    '🤮',
-    '🤯',
-    '👿',
-  ]);
+	const [emotions] = useState([
+		'😀',
+		'😄',
+		'😚',
+		'😆',
+		'🤣',
+		'😅',
+		'😊',
+		'🥰',
+		'😨',
+		'😜',
+		'🤔',
+		'😒',
+		'😭',
+		'🤨',
+		'🥱',
+		'😔',
+		'🤮',
+		'🤯',
+		'👿',
+	]);
 
-  return (
-    <div className={styles.container}>
-      {emotions.map((emotion, index) => (
-        <Emotion
-          key={index}
-          emotion={emotion}
-          changeEmotion={changeEmotion}
-          showFeelComponent={showFeelComponent}
-        ></Emotion>
-      ))}
-    </div>
-  );
+	return (
+		<div className={styles.container}>
+			{emotions.map((emotion, index) => (
+				<Emotion
+					key={index}
+					emotion={emotion}
+					changeEmotion={changeEmotion}
+					showFeelComponent={showFeelComponent}
+				></Emotion>
+			))}
+		</div>
+	);
 });
 ```
 
@@ -377,17 +376,17 @@ Feel 컴포넌트에서 각 이모지들을 map으로 보여주고 사용자가 
 
 ```js
 const Emotion = memo(({ emotion, changeEmotion, showFeelComponent }) => {
-  const handleEmotion = (event) => {
-    const value = event.currentTarget.textContent;
-    changeEmotion(value);
-    showFeelComponent(false);
-  };
+	const handleEmotion = (event) => {
+		const value = event.currentTarget.textContent;
+		changeEmotion(value);
+		showFeelComponent(false);
+	};
 
-  return (
-    <h2 className={styles.emotion} onClick={handleEmotion}>
-      {emotion}
-    </h2>
-  );
+	return (
+		<h2 className={styles.emotion} onClick={handleEmotion}>
+			{emotion}
+		</h2>
+	);
 });
 ```
 
@@ -418,22 +417,22 @@ const Emotion = memo(({ emotion, changeEmotion, showFeelComponent }) => {
 
 ```js
 <div
-  className={`${styles.dateContainer} ${openDay && styles.clickDay}`}
-  onClick={showDayList}
+	className={`${styles.dateContainer} ${openDay && styles.clickDay}`}
+	onClick={showDayList}
 >
-  <ul className={styles.dropDown}>
-    {openDay &&
-      [...Array(day)].map((num, index) => (
-        <Dropdown
-          key={index}
-          showDayList={showDayList} // Dropdown을 보여주기위한 boolean타입의 State
-          index={index} // day배열의 해당 인덱스
-          value={'dayEdit'} // Dropdown을 보여주는 Component를 식별하기위한 props
-          onChange={showModal}
-        ></Dropdown>
-      ))}
-  </ul>
-  <span className={styles.dayText}>{`${date} 일`}</span>
+	<ul className={styles.dropDown}>
+		{openDay &&
+			[...Array(day)].map((num, index) => (
+				<Dropdown
+					key={index}
+					showDayList={showDayList} // Dropdown을 보여주기위한 boolean타입의 State
+					index={index} // day배열의 해당 인덱스
+					value={'dayEdit'} // Dropdown을 보여주는 Component를 식별하기위한 props
+					onChange={showModal}
+				></Dropdown>
+			))}
+	</ul>
+	<span className={styles.dayText}>{`${date} 일`}</span>
 </div>
 ```
 
@@ -451,23 +450,23 @@ const Emotion = memo(({ emotion, changeEmotion, showFeelComponent }) => {
 
 ```js
 <div
-  className={`${styles.month}  ${openMonth && styles.clickMonth}`}
-  onClick={showMonthList}
+	className={`${styles.month}  ${openMonth && styles.clickMonth}`}
+	onClick={showMonthList}
 >
-  <span>{`${currentMonth}월`}</span>
-  <ul className={styles.dropDown}>
-    {openMonth &&
-      [...Array(monthCount)].map((num, index) => (
-        <Dropdown
-          key={index}
-          updateMonth={updateMonth} // 선택된 Month를 업데이트 하기위한 함수
-          showMonthList={showMonthList} // Dropdown을 보여주기위한 boolean타입의 State
-          index={index} // monthCount배열의 해당 인덱스
-          changeCurrentMonth={changeCurrentMonth} // 현재 선택된 Month를 변경하기 위한 함수
-          value={'month'} // Dropdown을 보여주는 Component를 식별하기위한 props
-        ></Dropdown>
-      ))}
-  </ul>
+	<span>{`${currentMonth}월`}</span>
+	<ul className={styles.dropDown}>
+		{openMonth &&
+			[...Array(monthCount)].map((num, index) => (
+				<Dropdown
+					key={index}
+					updateMonth={updateMonth} // 선택된 Month를 업데이트 하기위한 함수
+					showMonthList={showMonthList} // Dropdown을 보여주기위한 boolean타입의 State
+					index={index} // monthCount배열의 해당 인덱스
+					changeCurrentMonth={changeCurrentMonth} // 현재 선택된 Month를 변경하기 위한 함수
+					value={'month'} // Dropdown을 보여주는 Component를 식별하기위한 props
+				></Dropdown>
+			))}
+	</ul>
 </div>
 ```
 
@@ -485,48 +484,48 @@ Dropdown 컴포넌트이며 조건문으로 각 컴포넌트를 구분하기 위
 
 ```js
 const Dropdown = memo(
-  ({
-    updateMonth,
-    showMonthList,
-    showDayList,
-    index,
-    changeCurrentMonth,
-    changeCurrentDay,
-    value,
-    onChange,
-  }) => {
-    const dateRef = useRef();
+	({
+		updateMonth,
+		showMonthList,
+		showDayList,
+		index,
+		changeCurrentMonth,
+		changeCurrentDay,
+		value,
+		onChange,
+	}) => {
+		const dateRef = useRef();
 
-    const setNewMonthOrselectDate = (event) => {
-      const showDate = dateRef.current.value;
-      if (value === 'month') {
-        //month를 변경하는 컴포넌트일 경우
-        const newDate = `0${showDate}`;
-        updateMonth(newDate); //월별로 일기를 나타내기위해 현재의 Month를 변경하는 함수호출
-        showMonthList(); // Dropdown을 보여주는 함수호출
-        changeCurrentMonth(showDate); // 현재 몇 월인지 나타내기위해 현재의 Month를 기록하는 함수호출
-      } else if (value === 'dayAdd') {
-        // addForm 컴포넌트일 경우
-        showDayList(); // Dropdown을 보여주는 함수호출
-        changeCurrentDay(showDate); // 현재 Date를 변경하는 함수호출
-      } else {
-        // EditForm 컴포넌트일 경우
-        showDayList();
-        onChange(event, 'date', 'id', 'beforeId'); //일기를 변경하는 onChange함수 호출
-      }
-    };
+		const setNewMonthOrselectDate = (event) => {
+			const showDate = dateRef.current.value;
+			if (value === 'month') {
+				//month를 변경하는 컴포넌트일 경우
+				const newDate = `0${showDate}`;
+				updateMonth(newDate); //월별로 일기를 나타내기위해 현재의 Month를 변경하는 함수호출
+				showMonthList(); // Dropdown을 보여주는 함수호출
+				changeCurrentMonth(showDate); // 현재 몇 월인지 나타내기위해 현재의 Month를 기록하는 함수호출
+			} else if (value === 'dayAdd') {
+				// addForm 컴포넌트일 경우
+				showDayList(); // Dropdown을 보여주는 함수호출
+				changeCurrentDay(showDate); // 현재 Date를 변경하는 함수호출
+			} else {
+				// EditForm 컴포넌트일 경우
+				showDayList();
+				onChange(event, 'date', 'id', 'beforeId'); //일기를 변경하는 onChange함수 호출
+			}
+		};
 
-    return (
-      <li
-        ref={dateRef}
-        className={styles.monthList}
-        value={String(index + 1)}
-        onClick={setNewMonthOrselectDate}
-      >
-        {index + 1}
-      </li>
-    );
-  }
+		return (
+			<li
+				ref={dateRef}
+				className={styles.monthList}
+				value={String(index + 1)}
+				onClick={setNewMonthOrselectDate}
+			>
+				{index + 1}
+			</li>
+		);
+	}
 );
 ```
 
@@ -553,19 +552,19 @@ ImageUploader 라는 클래스를 만들어 Cloudinary의 이미지를 업로드
 
 ```js
 class ImageUploader {
-  async upload(file) {
-    const data = new FormData();
-    data.append('file', file);
-    data.append('upload_preset', 'oxdsrfek');
-    const result = await fetch(
-      'https://api.cloudinary.com/v1_1/divncmfka/image/upload',
-      {
-        method: 'POST',
-        body: data,
-      }
-    );
-    return await result.json();
-  }
+	async upload(file) {
+		const data = new FormData();
+		data.append('file', file);
+		data.append('upload_preset', 'oxdsrfek');
+		const result = await fetch(
+			'https://api.cloudinary.com/v1_1/divncmfka/image/upload',
+			{
+				method: 'POST',
+				body: data,
+			}
+		);
+		return await result.json();
+	}
 }
 
 export default ImageUploader;
@@ -585,10 +584,10 @@ CardAddForm 컴포넌트와 CardEditForm 컴포넌트에서 File 이라는 State
 
 ```js
 const onFileChange = useCallback((file) => {
-  setFile({
-    fileName: file.name,
-    fileURL: file.url,
-  });
+	setFile({
+		fileName: file.name,
+		fileURL: file.url,
+	});
 }, []);
 ```
 
@@ -607,47 +606,47 @@ CardAddForm 에서 props로 받아온 onFileChange 함수에 업로드된 이미
 
 ```js
 const ImageFileInput = memo(({ imageUploader, name, onFileChange }) => {
-  const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(false);
 
-  const inputRef = useRef();
+	const inputRef = useRef();
 
-  const onbuttonCLick = (event) => {
-    event.preventDefault();
-    inputRef.current.click();
-  };
+	const onbuttonCLick = (event) => {
+		event.preventDefault();
+		inputRef.current.click();
+	};
 
-  const onChange = async (event) => {
-    setLoading(true);
-    const uploaded = await imageUploader.upload(event.target.files[0]);
-    setLoading(false); // Image가 업로드 됐으면 State 변경
-    onFileChange({
-      // Image의 이름과 url을 등록하여 onFileChange 호출
-      name: uploaded.original_filename,
-      url: uploaded.url,
-    });
-  };
-  return (
-    <div className={styles.container}>
-      <input
-        ref={inputRef}
-        className={styles.input}
-        type="file"
-        accept="image/*"
-        name="file"
-        onChange={onChange}
-      />
-      {!loading && (
-        <button
-          className={`${styles.button} ${name ? styles.pink : styles.grey}`}
-          onClick={onbuttonCLick}
-        >
-          {name || 'No file'}
-        </button>
-      )}
-      {loading && <div className={styles.loading}></div>} 로딩이 완료되지
-      않았다면 로딩스피너가 보여집니다
-    </div>
-  );
+	const onChange = async (event) => {
+		setLoading(true);
+		const uploaded = await imageUploader.upload(event.target.files[0]);
+		setLoading(false); // Image가 업로드 됐으면 State 변경
+		onFileChange({
+			// Image의 이름과 url을 등록하여 onFileChange 호출
+			name: uploaded.original_filename,
+			url: uploaded.url,
+		});
+	};
+	return (
+		<div className={styles.container}>
+			<input
+				ref={inputRef}
+				className={styles.input}
+				type="file"
+				accept="image/*"
+				name="file"
+				onChange={onChange}
+			/>
+			{!loading && (
+				<button
+					className={`${styles.button} ${name ? styles.pink : styles.grey}`}
+					onClick={onbuttonCLick}
+				>
+					{name || 'No file'}
+				</button>
+			)}
+			{loading && <div className={styles.loading}></div>} 로딩이 완료되지
+			않았다면 로딩스피너가 보여집니다
+		</div>
+	);
 });
 export default ImageFileInput;
 ```
@@ -678,11 +677,11 @@ import 'firebase/auth';
 import 'firebase/database';
 
 const firebaseConfig = {
-  //env 파일에 저장되어있는 Firebase SDK를 불러옴
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_FIREBASE_DB_URL,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+	//env 파일에 저장되어있는 Firebase SDK를 불러옴
+	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+	databaseURL: process.env.REACT_APP_FIREBASE_DB_URL,
+	projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
@@ -717,44 +716,44 @@ AuthService 클래스에 로그인과 로그아웃을 위한 함수를 생성하
 
 ```js
 import {
-  firebaseAuth,
-  githubProvider,
-  googleProvider,
-  facebookProvider,
+	firebaseAuth,
+	githubProvider,
+	googleProvider,
+	facebookProvider,
 } from './firebase';
 
 class AuthService {
-  login(providerName) {
-    // 로그인
-    const authProvider = this.getProvider(providerName);
-    return firebaseAuth.signInWithPopup(authProvider); // 팝업 창을 사용하여 로그인하기위해 호출
-  }
+	login(providerName) {
+		// 로그인
+		const authProvider = this.getProvider(providerName);
+		return firebaseAuth.signInWithPopup(authProvider); // 팝업 창을 사용하여 로그인하기위해 호출
+	}
 
-  logout() {
-    // 로그아웃
-    firebaseAuth.signOut();
-  }
+	logout() {
+		// 로그아웃
+		firebaseAuth.signOut();
+	}
 
-  onAuthChange(onUserChanged) {
-    // 인증 상태 관찰자 설정
-    firebaseAuth.onAuthStateChanged((user) => {
-      onUserChanged(user);
-    });
-  }
+	onAuthChange(onUserChanged) {
+		// 인증 상태 관찰자 설정
+		firebaseAuth.onAuthStateChanged((user) => {
+			onUserChanged(user);
+		});
+	}
 
-  getProvider(providerName) {
-    // 어떤 서비스를 이용하여 로그인 하였는지 구별하기 위해 switch 문 사용
-    switch (providerName) {
-      case 'Google':
-        return googleProvider;
-      case 'Github':
-        return githubProvider;
-      case 'Facebook':
-        return facebookProvider;
-      default:
-        throw new Error(`not supported provider: ${providerName}`);
-    }
-  }
+	getProvider(providerName) {
+		// 어떤 서비스를 이용하여 로그인 하였는지 구별하기 위해 switch 문 사용
+		switch (providerName) {
+			case 'Google':
+				return googleProvider;
+			case 'Github':
+				return githubProvider;
+			case 'Facebook':
+				return facebookProvider;
+			default:
+				throw new Error(`not supported provider: ${providerName}`);
+		}
+	}
 }
 
 export default AuthService;
@@ -819,29 +818,29 @@ CardRepository 클래스에 불러오기, 저장, 삭제 기능을 수행하는 
 import { firebaseDatabase } from './firebase';
 
 class CardRepository {
-  syncCards(userId, onUpdate, month) {
-    // Database에서 해당 월의 일기를 불러옵니다
-    const ref = firebaseDatabase.ref(`${userId}/${month}/cards`);
-    ref.on('value', (snapshot) => {
-      const value = snapshot.val();
-      value ? onUpdate(value) : onUpdate(''); // 일기가 있다면 State에 저장하는 Callback함수를 호출합니다
-    });
-    return () => ref.off();
-  }
+	syncCards(userId, onUpdate, month) {
+		// Database에서 해당 월의 일기를 불러옵니다
+		const ref = firebaseDatabase.ref(`${userId}/${month}/cards`);
+		ref.on('value', (snapshot) => {
+			const value = snapshot.val();
+			value ? onUpdate(value) : onUpdate(''); // 일기가 있다면 State에 저장하는 Callback함수를 호출합니다
+		});
+		return () => ref.off();
+	}
 
-  saveCard(userId, card, month) {
-    // 해당 월의 Database에 저장
-    firebaseDatabase.ref(`${userId}/${month}/cards/${card.id}`).set(card); // card의 id는 선택한 날짜로 지정
-  }
+	saveCard(userId, card, month) {
+		// 해당 월의 Database에 저장
+		firebaseDatabase.ref(`${userId}/${month}/cards/${card.id}`).set(card); // card의 id는 선택한 날짜로 지정
+	}
 
-  removeCard(userId, card, month, update) {
-    //일기 삭제
-    update // EditForm 컴포넌트에서 일기를 변경하는 경우
-      ? firebaseDatabase
-          .ref(`${userId}/${month}/cards/${card.beforeId}`) // 기존 날짜의 일기를 삭제
-          .remove()
-      : firebaseDatabase.ref(`${userId}/${month}/cards/${card.id}`).remove(); //update가 아닌경우 선택 날짜의 일기를 삭제
-  }
+	removeCard(userId, card, month, update) {
+		//일기 삭제
+		update // EditForm 컴포넌트에서 일기를 변경하는 경우
+			? firebaseDatabase
+					.ref(`${userId}/${month}/cards/${card.beforeId}`) // 기존 날짜의 일기를 삭제
+					.remove()
+			: firebaseDatabase.ref(`${userId}/${month}/cards/${card.id}`).remove(); //update가 아닌경우 선택 날짜의 일기를 삭제
+	}
 }
 
 export default CardRepository;
@@ -863,19 +862,19 @@ Maker 컴포넌트가 마운트 되면 CardRepository 클래스에 syncCards 함
 const [cards, setCards] = useState({}); // 각 월별 일기를 저장하는 State
 
 useEffect(() => {
-  if (!userId) {
-    return; // 로그인이 안 되어있으면 종료되는 Early return
-  }
+	if (!userId) {
+		return; // 로그인이 안 되어있으면 종료되는 Early return
+	}
 
-  const stopSync = cardRepository.syncCards(
-    userId,
-    (cards) => {
-      //syncCards 함수 호출 후 ref.off 리턴받아 stopSync에 할당
-      setCards(cards); // 불러온 일기들을 State에 저장
-    },
-    month
-  );
-  return () => stopSync(); // 언마운트 될 시 불필요한 네트워크 사용을 최소화 하기위해  ref.off
+	const stopSync = cardRepository.syncCards(
+		userId,
+		(cards) => {
+			//syncCards 함수 호출 후 ref.off 리턴받아 stopSync에 할당
+			setCards(cards); // 불러온 일기들을 State에 저장
+		},
+		month
+	);
+	return () => stopSync(); // 언마운트 될 시 불필요한 네트워크 사용을 최소화 하기위해  ref.off
 }, [userId, cardRepository, month]);
 ```
 
@@ -893,51 +892,51 @@ Maker 컴포넌트에서 각 컴포넌트에서 수정, 생성, 삭제를 수행
 
 ```js
 const updateCard = useCallback(
-  (card) => {
-    // EditForm 컴포넌트에서 일기를 변경 할 때 호출
-    setCards((cards) => {
-      // 기존의 일기를 삭제하여 저장
-      const updated = { ...cards };
-      delete updated[card.beforeId];
-      return updated;
-    });
-    cardRepository.removeCard(userId, card, month, 'update');
+	(card) => {
+		// EditForm 컴포넌트에서 일기를 변경 할 때 호출
+		setCards((cards) => {
+			// 기존의 일기를 삭제하여 저장
+			const updated = { ...cards };
+			delete updated[card.beforeId];
+			return updated;
+		});
+		cardRepository.removeCard(userId, card, month, 'update');
 
-    setCards((cards) => {
-      // 새로운 일기를 업데이트하여 저장
-      const updated = { ...cards };
-      updated[card.id] = card;
-      return updated;
-    });
-    cardRepository.saveCard(userId, card, month);
-  },
-  [userId, month, cardRepository]
+		setCards((cards) => {
+			// 새로운 일기를 업데이트하여 저장
+			const updated = { ...cards };
+			updated[card.id] = card;
+			return updated;
+		});
+		cardRepository.saveCard(userId, card, month);
+	},
+	[userId, month, cardRepository]
 );
 
 const createCard = useCallback(
-  (card) => {
-    // 새로운 일기를 생성하거나 TextArea를 편집 할 때 호출
-    setCards((cards) => {
-      const updated = { ...cards };
-      updated[card.id] = card;
-      return updated;
-    });
-    cardRepository.saveCard(userId, card, month);
-  },
-  [userId, month, cardRepository]
+	(card) => {
+		// 새로운 일기를 생성하거나 TextArea를 편집 할 때 호출
+		setCards((cards) => {
+			const updated = { ...cards };
+			updated[card.id] = card;
+			return updated;
+		});
+		cardRepository.saveCard(userId, card, month);
+	},
+	[userId, month, cardRepository]
 );
 
 const deleteCard = useCallback(
-  (card) => {
-    // 선택한 일기를 삭제할 때 호출
-    setCards((cards) => {
-      const updated = { ...cards };
-      delete updated[card.id];
-      return updated;
-    });
-    cardRepository.removeCard(userId, card, month);
-  },
-  [userId, month, cardRepository]
+	(card) => {
+		// 선택한 일기를 삭제할 때 호출
+		setCards((cards) => {
+			const updated = { ...cards };
+			delete updated[card.id];
+			return updated;
+		});
+		cardRepository.removeCard(userId, card, month);
+	},
+	[userId, month, cardRepository]
 );
 ```
 
@@ -966,17 +965,17 @@ Maker 컴포넌트에서 선택된 일기를 등록하는 State와 일기 컴포
 
 ```js
 const readDiary = useCallback((selectCard) => {
-  // 읽고자 하는 일기를 State에 등록
-  setReadCard(selectCard);
+	// 읽고자 하는 일기를 State에 등록
+	setReadCard(selectCard);
 }, []);
 
 const openDiary = useCallback((value) => {
-  // 일기를 클릭하면 컴포넌트 Open
-  if (value === 'open') {
-    setDiaryOpen(true);
-  } else {
-    setDiaryOpen(false);
-  }
+	// 일기를 클릭하면 컴포넌트 Open
+	if (value === 'open') {
+		setDiaryOpen(true);
+	} else {
+		setDiaryOpen(false);
+	}
 }, []);
 ```
 
@@ -994,32 +993,32 @@ readCard 라는 State를 받아 어떤 일기를 보여줄 것인지 인식하�
 
 ```js
 const Diary = memo(({ readCard, openDiary }) => {
-  const { date, fileURL, message, emotion } = readCard;
-  const url = fileURL || DEFAULT_IMAGE;
+	const { date, fileURL, message, emotion } = readCard;
+	const url = fileURL || DEFAULT_IMAGE;
 
-  const closeDiary = (event) => {
-    // 일기의 close 버튼을 클릭하면 일기가 닫힘
-    openDiary(event.target.value);
-  };
+	const closeDiary = (event) => {
+		// 일기의 close 버튼을 클릭하면 일기가 닫힘
+		openDiary(event.target.value);
+	};
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.emotion}>
-        <span>{emotion}</span>
-      </div>
-      <h2 className={styles.date}>{date} th</h2>
-      <button
-        className={styles.closeBtn}
-        type="button"
-        value="close"
-        onClick={closeDiary}
-      >
-        닫기
-      </button>
-      <img className={styles.img} src={url} alt="feel" />
-      <span className={styles.message}>{message}</span>
-    </div>
-  );
+	return (
+		<div className={styles.container}>
+			<div className={styles.emotion}>
+				<span>{emotion}</span>
+			</div>
+			<h2 className={styles.date}>{date} th</h2>
+			<button
+				className={styles.closeBtn}
+				type="button"
+				value="close"
+				onClick={closeDiary}
+			>
+				닫기
+			</button>
+			<img className={styles.img} src={url} alt="feel" />
+			<span className={styles.message}>{message}</span>
+		</div>
+	);
 });
 ```
 
