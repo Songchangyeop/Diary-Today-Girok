@@ -25,18 +25,11 @@ React, React-router-dom, CSS Module ,Firebase, Cloudinary
 <br>
 <br>
 
-# 2. 📁컴포넌트 구조
-
-<p align="center"><img src="public/images/capture/컴포넌트.PNG"  width="430" height="500"></p>
-
-<br>
-<br>
-
-# 3. 🔨기능
+# 2. 🔨기능
 
 <br>
 
-## 3 - 1 📝일기추가
+## 2 - 1 📝일기추가
 
 <br>
 
@@ -131,7 +124,7 @@ for (let i = 0; i < cardsToArr.length; i++) {
 
 <br>
 
-## 3 - 2 📝일기편집
+## 2 - 2 📝일기편집
 
 <br>
 
@@ -308,7 +301,7 @@ const allowUpdate = useCallback(() => {
 
 <br>
 
-## 3 - 3 😄오늘의 Emotion 선택
+## 2 - 3 😄오늘의 Emotion 선택
 
 <p align="center"><img src="public/images/capture/이모지.PNG"  width="350" height="200"></p>
 
@@ -397,7 +390,7 @@ const Emotion = memo(({ emotion, changeEmotion, showFeelComponent }) => {
 
 <br>
 
-## 3 - 4 🧰Dropdown
+## 2 - 4 🧰Dropdown
 
 <br>
 
@@ -536,7 +529,7 @@ const Dropdown = memo(
 
 ---
 
-## 3 - 5 📷Cloudinary
+## 2 - 5 📷Cloudinary
 
 <br>
 
@@ -656,7 +649,7 @@ export default ImageFileInput;
 
 ---
 
-## 3 - 6 🔥Firebase
+## 2 - 6 🔥Firebase
 
 <br>
 
@@ -947,7 +940,7 @@ const deleteCard = useCallback(
 
 <br>
 
-## 3 - 7 📖일기 보기
+## 2 - 7 📖일기 보기
 
 <p align="center"><img src="public/images/capture/일기.PNG"  width="350" height="300"></p>
 
@@ -1029,17 +1022,7 @@ const Diary = memo(({ readCard, openDiary }) => {
 <br>
 <br>
 
-# 4. 💡앞으로의 개선사항
-
-- ## 개선해야 할 것들
-
-  - 일기를 삭제할 때 삭제 여부를 묻는 창이 있으면 좋겠다는 사용자의 의견을 반영하여 Delete 버튼을 누르면 삭제 여부를 물어보는 Modal을 추가 할 예정입니다
-
-  <br>
-
-  - 페이스북 간편 로그인이 안 된다는 사용자의 불만을 반영하여 페이스북 간편 로그인 오류를 해결할 예정입니다
-
-  <br>
+# 3. 💡앞으로의 개선사항
 
 - ## 개선 한 것들
 
